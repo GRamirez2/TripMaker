@@ -1,3 +1,8 @@
+
+
+
+
+/*
 // add ready function??
 
 alert("working!");
@@ -58,10 +63,12 @@ $("#").on("click", function(){
 
  	/*TIMESTAMP*/
 
- 	};/*end of dayTrip json object*/
+//	};/*end of dayTrip json object*/
 
-	database.ref('day_trip/').push(dayTrip)/*Is this correct*/
+//	database.ref('day_trip/').push(dayTrip)/*Is this correct*/
 
  	// return false; /*Do I need this?, What was the other method Josh said to use?*/
 
-});/*End of on click funtion*/
+//});/*End of on click funtion*/ 
+
+/*
