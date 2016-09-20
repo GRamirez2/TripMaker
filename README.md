@@ -9,6 +9,7 @@ https://developers.google.com/maps/documentation/embed/guide#street_view_mode
 Google MAP API console
 https://console.developers.google.com/apis/dashboard?project=tripmaker-143922&duration=P30D
 
+============================Git Instructions================
 
 FORKING
 
@@ -24,7 +25,7 @@ FORKING
 10. Submit pull request.
 11. Team lead can now merge the code into their repository.
 
-============================Git Instructions================
+
 ADD COLLABORATORS
 
 1. Elect a project "lead".
