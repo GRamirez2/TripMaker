@@ -1,5 +1,8 @@
 
+$("#addTrip").on("click", function(){
+	console.log("hello world")
 
+});
 
 
 /*

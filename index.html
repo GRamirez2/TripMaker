@@ -38,10 +38,13 @@
 
 	<div class="row">
 
+
+
 		<!-- side nav bar (collapsable) -->
 		<div class="col s12 m4 l3">
 			 <ul id="slide-out" class="side-nav fixed">
-			      <li><a href="#!">Add New Trip</a></li>
+			        <!-- Modal Trigger -->
+ 				 <button data-target="modal1" class="btn modal-trigger">New Trip</button>
 			      <li><a href="#!">My Trips</a></li>
 			    
 			 </ul>
@@ -50,10 +53,35 @@
     	</div>
 
 		<div class="col s12 m8 l9">
-
+			<div class="row">
+				<form class="col s12">
+					<div class="row">
+						<div class="input-field col s12">
+							<input id="activity" type="text">
+         					<label for="activity"></label>
+	         				<a id="addActivity" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Add</a>
+						  </div>
+							
+						</div>
+						
+					</div>
+					
+				</form>			  
+			<div id="destination">
+				<h4>San Diego, CA 75 degrees F</h4>
+			</div>
 		
-		</div>
-
+			<div class="row">
+				<table>
+			        <thead>
+			          <tr>
+			              <th data-field="thingsToDo">Things To Do</th>
+			              <th data-field="PlacesToEatDrink">Places to Eat n' Drink</th>
+			          </tr>
+			        </thead>
+			    </table>
+				
+			</div>
 
 	</div>
 
