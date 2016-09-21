@@ -52,9 +52,9 @@ $(document).ready(function() {
 				
 		});
 
-	};/*end of dayTrip json object*/
 
-	database.ref('day_trip/').push(dayTrip)/*Is this correct*/
+
+	// database.ref('day_trip/').push(dayTrip)/*Is this correct*/
 
 	// https:www.google.com/maps/embed/v1/place?key=AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E&q=austin+tx
 
@@ -91,6 +91,107 @@ $('#addLocation').on('click', function(){
 
 
 // =================Printing Map To Screen=================
+
+//=================George Testing Data Base Configuration=======================
+
+var testing1 = ['testin','to','see','what','an','array','looks','like'];
+var testing2 = ['motel6', 'under a tree', 'in a car', 'on the street'];
+var testing3 = ['Congress Street Bridge', 'capitol', 'ski shores', 'yellow rose'];
+var testing4 = "lat 30.99999";
+var testing5 = "lng -90.84848";
+var name = "User Name";
+var email = "User Email";
+var cityState = "austin, tx";
+var cityState2 = "houston, tx";
+
+var day_trip = database.ref("day_trip");
+var weekend_trip = database.ref("weekend_trip");
+var week_trip = database.ref("week_trip");
+
+day_trip.update({
+	user:name,
+	contact:email
+	});
+
+weekend_trip.update({
+	user:name,
+	contact:email
+	});
+
+week_trip.update({
+	user:name,
+	contact:email
+	});
+
+day_trip.update({
+		trip001:{/*Can we make the name of this child when a user selects a city or place?*/
+				eat:testing1,
+				sleep:testing2,
+				do:testing3,
+				lat:testing4,
+				lng:testing5,
+				city: cityState
+		}
+	});
+
+// This also works
+// var austinchild = day_trip.child("austin");
+// austinchild.update({
+//   	lat:testing4,
+// 	lng:testing5
+// });
+
+day_trip.update({
+		trip002:{/*Can we make the name of this child when a user selects a city or place?*/
+				eat:testing1,
+				sleep:testing2,
+				do:testing3,
+				lat:testing4,
+				lng:testing5,
+				city: cityState2
+
+		}
+	});
+
+weekend_trip.update({
+		trip001:{/*Can we make the name of this child when a user selects a city or place?*/
+				eat:testing1,
+				sleep:testing2,
+				do:testing3,
+				lat:testing4,
+				lng:testing5
+
+		}
+	});
+
+week_trip.update({
+		trip001:{/*Can we make the name of this child when a user selects a city or place?*/
+				eat:testing1,
+				sleep:testing2,
+				do:testing3,
+				lat:testing4,
+				lng:testing5
+
+		}
+	});
+
+// At the initial load, get a snapshot of the current data.
+day_trip.on("value", function(snapshot) {
+
+	// Print the initial data to the console.
+	console.log(snapshot.val().trip001);
+	console.log(snapshot.val().trip002);
+	console.log(snapshot.val());
+	console.log(snapshot.val().trip001.do);
+	console.log(snapshot.val().trip001.sleep);
+	console.log(snapshot.val().trip001.sleep.length);
+	
+
+
+});
+
+
+//==================END of George Testing Data Base Configuration===============
 
 
 //=========================================================
