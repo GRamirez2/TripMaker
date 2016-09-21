@@ -1,4 +1,5 @@
 
+// add ready function??
 
 $(document).ready(function() {
 
@@ -51,10 +52,20 @@ $(document).ready(function() {
 				
 		});
 
-	// https://www.google.com/maps/embed/v1/place?key=AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E&q=austin+tx
+	};/*end of dayTrip json object*/
+
+	database.ref('day_trip/').push(dayTrip)/*Is this correct*/
+
+	// https:www.google.com/maps/embed/v1/place?key=AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E&q=austin+tx
+
 
 
 // ================END GOOGLE API CALL=====================
+
+
+//});/*End of on click funtion*/ 
+
+
 
 // =================Printing Map To Screen=================
 
@@ -109,9 +120,9 @@ $(document).ready(function() {
 
 // 	database.ref('/day_trip').push(dayTrip)/*Is this correct, does that forward slash need to be there?*/
 
-//  	// return false; /*Do I need this?, What was the other method Josh said to use?*/
+ 	// return false; /*Do I need this?, What was the other method Josh said to use?*/
 
-// });/*End of on click funtion*/
-
+ //});/*End of on click funtion*/
 
 });/*END OF .ready function*/
+

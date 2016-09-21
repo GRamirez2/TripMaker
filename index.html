@@ -1,53 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
 	<title>Trip Maker</title>
-	<!-- cutestrip css -->
-	<link rel="stylesheet" type="text/css" href="assets/css/cutestrap.css">
+       <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="assets/css/materialize/css/materialize.min.css"  media="screen,projection"/>
+      <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
 	<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 </head>
 <body>
-<!-- <div id = "map" style = "height:100% width:100%"> -->
-<!-- Google Code -->
 
- <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map{
-        height: 100%;
-      }
-      #map2{
-        height: 600px;
-        width: 800px;
-      }
-      #floating-panel {
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        z-index: 5;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        text-align: center;
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="floating-panel">
-    <form>
-      <input id="place" type="textbox" value="">
-      <input id="submit" type="button" value="Geocode">
-    </form>
-    </div>
-    <div id="map">
-    	<div id="map2">
+<container>
+
+<!-- top nav bar -->
+	<div class="row">
+
+
+		<div class="col s12">
+			<nav>
+				<div class="nav-wrapper">
+					<a href="#" class="brand-logo">TripMaker</a>
+					<ul id="nav-mobile" class="right hide-on-med-and-down">
+						<li><a href="#">Placeholder</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+
+	</div>
+
+	<div class="row">
+
+
+
+		<!-- side nav bar (collapsable) -->
+		<div class="col s12 m4 l3">
+			 <ul id="slide-out" class="side-nav fixed">
+			        <!-- Modal Trigger -->
+ 				 <button data-target="modal1" class="btn modal-trigger">New Trip</button>
+			      <li><a href="#!">My Trips</a></li>
+			    
+			 </ul>
+			    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+			
+    	</div>
+
+		<div class="col s12 m8 l9">
+			<div class="row">
+				<form class="col s12">
+					<div class="row">
+						<div class="input-field col s12">
+							<input id="activity" type="text">
+         					<label for="activity"></label>
+	         				<a id="addActivity" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Add</a>
+						  </div>
+							
+						</div>
+						
+					</div>
+					
+				</form>			  
+			<div id="destination">
+				<h4>San Diego, CA 75 degrees F</h4>
+			</div>
+		
+			<div class="row">
+				<table>
+			        <thead>
+			          <tr>
+			              <th data-field="thingsToDo">Things To Do</th>
+			              <th data-field="PlacesToEatDrink">Places to Eat n' Drink</th>
+			          </tr>
+			        </thead>
+			    </table>
+				
+			</div>
+
+	</div>
+
+
+</container>
+
+
     	<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55134.10748760741!2d-97.78582729412481!3d30.268951190987522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b50e720134c3%3A0x9eb67ecc9e2fcb81!2sLady+Bird+Lake!5e0!3m2!1sen!2sus!4v1474387287063" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
  -->    </div><!-- End of map2 -->
  
@@ -105,7 +147,12 @@
 
 <!-- Not sure if I need this google link here? -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+	<!-- Materialize css -->
+<script type="text/javascript" src="assets/css/js/materialize.min.js"></script>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E"></script>
+
 <script src="assets/js/logic.js"></script>
 
 
