@@ -71,7 +71,7 @@ ADDING CODE
       -add field for how long?
       
    -create add trip screen:
-     - google map API loaded on right hand side
+     google map API loaded on right hand side
      -weather forecast API Div
      -top nav bar : logo on left hand side,  add trip | view trip buttons on the right hand side
      -create left div 35% of the screen
