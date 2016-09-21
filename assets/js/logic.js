@@ -58,6 +58,29 @@ $(document).ready(function() {
 
 	// https:www.google.com/maps/embed/v1/place?key=AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E&q=austin+tx
 
+// retreive city input from user
+// ===================================================
+$('#addLocation').on('click', function(){
+
+		// Here we grab the text from the input box 
+		var city = $('#location-input').val().trim();
+
+		// Here we assemble our URL 
+		var queryURL = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID=29ce5f4e343c631c7edc5ddd5dbeec3f";
+
+
+		$.ajax({url: queryURL, method: 'GET'}).done(function(response) {
+
+			// Retrieves the Location Weather Data
+			var currentWeather = response.main.weather;
+
+			$('#LocationWeatherView').append(currentWeather);
+	})
+		return false;
+});
+// ====================================================
+
+
 
 
 // ================END GOOGLE API CALL=====================
