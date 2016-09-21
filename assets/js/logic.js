@@ -124,10 +124,10 @@ week_trip.update({
 	});
 
 day_trip.update({
-		trip001:{/*Can we make the name of this child when a user selects a city or place?*/
+		austin:{/*Can we make the name of this child when a user selects a city or place?*/
 				eat:testing1,
 				sleep:testing2,
-				do:testing3,
+				see:testing3,
 				lat:testing4,
 				lng:testing5,
 				city: cityState
@@ -142,10 +142,10 @@ day_trip.update({
 // });
 
 day_trip.update({
-		trip002:{/*Can we make the name of this child when a user selects a city or place?*/
+		houston:{/*Can we make the name of this child when a user selects a city or place?*/
 				eat:testing1,
 				sleep:testing2,
-				do:testing3,
+				see:testing3,
 				lat:testing4,
 				lng:testing5,
 				city: cityState2
@@ -157,7 +157,7 @@ weekend_trip.update({
 		trip001:{/*Can we make the name of this child when a user selects a city or place?*/
 				eat:testing1,
 				sleep:testing2,
-				do:testing3,
+				see:testing3,
 				lat:testing4,
 				lng:testing5
 
@@ -168,7 +168,7 @@ week_trip.update({
 		trip001:{/*Can we make the name of this child when a user selects a city or place?*/
 				eat:testing1,
 				sleep:testing2,
-				do:testing3,
+				see:testing3,
 				lat:testing4,
 				lng:testing5
 
@@ -179,16 +179,25 @@ week_trip.update({
 day_trip.on("value", function(snapshot) {
 
 	// Print the initial data to the console.
-	console.log(snapshot.val().trip001);
-	console.log(snapshot.val().trip002);
+	console.log(snapshot.val().austin);
+	console.log(snapshot.val().houston);
 	console.log(snapshot.val());
-	console.log(snapshot.val().trip001.do);
-	console.log(snapshot.val().trip001.sleep);
-	console.log(snapshot.val().trip001.sleep.length);
+	console.log(snapshot.val().austin.see);
+	console.log(snapshot.val().austin.sleep);
+	console.log(snapshot.val().austin.sleep.length);
+	console.log(snapshot.val().austin.city);
+	console.log(snapshot.val().houston.city);
 	
-
-
+	
 });
+
+// Why wont' this work!! I want to order by child damnit!!
+// var ref = new Firebase('https://tripmaker-adbb4.firebaseio.com');
+// ref.orderByChild("city").on("child_added", function(snapshot) {
+//   console.log(snapshot.key() + "line 196" + snapshot.val().city);
+// });
+
+
 
 
 //==================END of George Testing Data Base Configuration===============
