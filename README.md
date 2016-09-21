@@ -54,3 +54,33 @@ ADDING CODE
  - `git add .`
  - `git commit -m "a message that makes sense"`
  - `git push origin feature-add-firebase`
+ - 
+ Coding Tasks:
+-create 1st page:
+  -back drop image (slightly faded)
+  -create fixed "window" with logo , definition , add trip button and view trip button
+
+  -create "Modal" x 2 
+    -add trip fields:
+      -name
+      -email
+      -"where would you like to go?" (provide example in the form)
+      -how long would you like to stay?
+    -view trips
+      -add field for desitation?
+      -add field for how long?
+      
+   -create add trip screen:
+     - google map API loaded on right hand side
+     -weather forecast API Div
+     -top nav bar : logo on left hand side,  add trip | view trip buttons on the right hand side
+     -create left div 35% of the screen
+       -show destination and length of stay on the top
+       -add toDo/see button, eat n' Drink button, places to stay button
+       -add input field for activities/places to eat/stay
+       -add div for toDo/places to eat/ places to stay
+       -add function to delete each activity/places to eat/stay
+
+
+
+ 
