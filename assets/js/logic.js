@@ -47,7 +47,7 @@ $(document).ready(function() {
 				console.log(placeLng);
 				
 				// This is printing to the screen but should be out of this function
-				$("#map2").append('<iframe src=https://www.google.com/maps/embed/v1/place?key='+Key+'&q=austin+tx width="800" height="600" frameborder="0" style="border:0" ></iframe>');
+				$("#map2").append('<iframe src=https://www.google.com/maps/embed/v1/place?key='+Key+'&q=big+bend+tx width="800" height="600" frameborder="0" style="border:0" ></iframe>');
 				
 		});
 
