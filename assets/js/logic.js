@@ -2,6 +2,26 @@
 // add ready function??
 
 $(document).ready(function() {
+	$("#page2").hide();
+	$("#page1btn").click(function(){
+		$("#page1").hide();
+		$("#page2").show();
+
+	});
+
+	$("#page2").hide();
+	$("#page1btn2").click(function(){
+		$("#page1").hide();
+		$("#page2").show();
+
+	});
+
+	$("#page2").hide();
+	$("#page1btn3").click(function(){
+		$("#page1").hide();
+		$("#page2").show();
+
+	});
 
 	// alert("working!");
 	  // Initialize Firebase
