@@ -99,19 +99,27 @@ var testing2 = ['motel6', 'under a tree', 'in a car', 'on the street'];
 var testing3 = ['Congress Street Bridge', 'capitol', 'ski shores', 'yellow rose'];
 var testing4 = "lat 30.99999";
 var testing5 = "lng -90.84848";
-var name = "User Name";
-var email = "User Email";
+var name = "User Name Geroge";
+var email = "User data5testing2";
 var cityState = "austin, tx";
 var cityState2 = "houston, tx";
+
+// make a reset to clear the data and leave them empty. 
 
 var day_trip = database.ref("day_trip");
 var weekend_trip = database.ref("weekend_trip");
 var week_trip = database.ref("week_trip");
 
-day_trip.update({
+var postid = day_trip.push({
 	user:name,
 	contact:email
-	});
+	}).key;
+alert(postid);
+
+
+var test = {};
+test['/day_trip/'+postid]= {contact:name};
+database.ref().update(test);
 
 weekend_trip.update({
 	user:name,
@@ -178,11 +186,13 @@ week_trip.update({
 // At the initial load, get a snapshot of the current data.
 day_trip.on("value", function(snapshot) {
 
+	var seeS = snapshot.val().austin.see; 
+
 	// Print the initial data to the console.
 	console.log(snapshot.val().austin);
 	console.log(snapshot.val().houston);
 	console.log(snapshot.val());
-	console.log(snapshot.val().austin.see);
+	console.log(JSON.stringify(seeS));
 	console.log(snapshot.val().austin.sleep);
 	console.log(snapshot.val().austin.sleep.length);
 	console.log(snapshot.val().austin.city);
