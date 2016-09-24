@@ -94,53 +94,122 @@ $('#addLocation').on('click', function(){
 
 //=================George Testing Data Base Configuration=======================
 
+var newTrip = {
+
+	
+}
+// all these vars are for testing only. We will grab them dynamically in two other functions.
+// after we pus them to the DB, make a reset to clear the vars and leave them empty. 
 var testing1 = ['testin','to','see','what','an','array','looks','like'];
 var testing2 = ['motel6', 'under a tree', 'in a car', 'on the street'];
 var testing3 = ['Congress Street Bridge', 'capitol', 'ski shores', 'yellow rose'];
 var testing4 = "lat 30.99999";
 var testing5 = "lng -90.84848";
-var name = "User Name Geroge";
+var name = "User Name George";
 var email = "User data5testing2";
 var cityState = "austin, tx";
 var cityState2 = "houston, tx";
-
-// make a reset to clear the data and leave them empty. 
-
-var day_trip = database.ref("day_trip");
-var weekend_trip = database.ref("weekend_trip");
-var week_trip = database.ref("week_trip");
-
-var postid = day_trip.push({
-	user:name,
-	contact:email
-	}).key;
-alert(postid);
+var trip = "day";
 
 
-var test = {};
-test['/day_trip/'+postid]= {contact:name};
-database.ref().update(test);
 
-weekend_trip.update({
-	user:name,
-	contact:email
+//This is creating one "parent" in the data base named "trips"
+var trips = database.ref("trips");
+
+// This fuction will be called when a NEW trip is created the very first time, and only the 1st time
+// it will push the city, type of trip, and info to put Google maps on the screen.
+function newTrip(){
+
+// 1st thing that happens is grabing the values from the screen and creating vars. 
+// var city = input.val().trim();
+// var type = input.val().trim();
+
+// 2nd - is getting the city var and putting it through Google geocode to get lat/lng+jplaceID.
+// and printing a map to the screen.
+// Put Google ajax call to geocode API code here++++++++++++++++++++++++++++
+// var lat = json.results[0].geometry.location.lat;
+// 	console.log(lat);
+// var lng = json.results[0].geometry.location.lng;
+// 	console.log(lng);
+// var placeID = json.results[0].place_id;
+// 	console.log(placeID);
+
+// Put code to print to screen here+++++++++++++++++++++++++++
+
+// Weather API, ajax call and print to screen.
+
+// 3rd create a new child when we push the city and trip type to the DB, setting up the other key value
+// pairs as empty
+	var key = trips.push({
+
+				eat: [],
+				sleep: [],
+				see: [],
+				lat: "some lat number",
+				lng: 'some lng number',
+				id: "temp for placeID",
+				city: "Austin, TX",
+				city2: "houston, TX",
+				notes: ""
+				
+				}).key;
+
+	console.log(key);
+	trips.on("value", function(snapshot) {
+		console.log(snapshot.val()[key]);
 	});
 
-week_trip.update({
-	user:name,
-	contact:email
-	});
+// dynamically put the key in the dom, so we can use it again for the updateTrip function
+ // var $key = "<p>" + key + "</p>";
+ //    $("#need ID").html($key);
+// Be sure you empty vars from top of fuction??
 
-day_trip.update({
-		austin:{/*Can we make the name of this child when a user selects a city or place?*/
-				eat:testing1,
-				sleep:testing2,
-				see:testing3,
-				lat:testing4,
-				lng:testing5,
-				city: cityState
-		}
-	});
+};/*end of newTrip function*/
+
+// Firing the newTrip funct will be embedded in an onlick from a specific screen and button.
+newTrip();
+
+function updateTrip(){
+
+// Need to grap the key dynamically and insert it in the next line for key, and as a key value pair.
+// var key = grab the number dynamically from the dom.
+var newData = {};
+newData['/trips/'+key]= {
+								eat: testing1,
+								sleep: testing2,
+								see: testing3,
+								lat: testing4,
+								lng: testing5,
+								city: cityState,
+								city2: cityState,
+								trip:trip,
+								key: key
+							};
+
+database.ref().update(newData);
+};/*end of update function*/
+// updateTrip();
+
+// weekend_trip.update({
+// 	user:name,
+// 	contact:email
+// 	});
+
+// week_trip.update({
+// 	user:name,
+// 	contact:email
+// 	});
+
+// day_trip.update({
+// 		austin:{Can we make the name of this child when a user selects a city or place?
+// 				eat:testing1,
+// 				sleep:testing2,
+// 				see:testing3,
+// 				lat:testing4,
+// 				lng:testing5,
+// 				city: cityState
+// 		}
+// 	});
 
 // This also works
 // var austinchild = day_trip.child("austin");
@@ -149,57 +218,63 @@ day_trip.update({
 // 	lng:testing5
 // });
 
-day_trip.update({
-		houston:{/*Can we make the name of this child when a user selects a city or place?*/
-				eat:testing1,
-				sleep:testing2,
-				see:testing3,
-				lat:testing4,
-				lng:testing5,
-				city: cityState2
+// day_trip.update({
+// 		houston:{/*Can we make the name of this child when a user selects a city or place?*/
+// 				eat:testing1,
+// 				sleep:testing2,
+// 				see:testing3,
+// 				lat:testing4,
+// 				lng:testing5,
+// 				city: cityState2
 
-		}
-	});
+// 		}
+// 	});
 
-weekend_trip.update({
-		trip001:{/*Can we make the name of this child when a user selects a city or place?*/
-				eat:testing1,
-				sleep:testing2,
-				see:testing3,
-				lat:testing4,
-				lng:testing5
+// weekend_trip.update({
+// 		trip001:{Can we make the name of this child when a user selects a city or place?
+// 				eat:testing1,
+// 				sleep:testing2,
+// 				see:testing3,
+// 				lat:testing4,
+// 				lng:testing5
 
-		}
-	});
+// 		}
+// 	});
 
-week_trip.update({
-		trip001:{/*Can we make the name of this child when a user selects a city or place?*/
-				eat:testing1,
-				sleep:testing2,
-				see:testing3,
-				lat:testing4,
-				lng:testing5
+// week_trip.update({
+// 		trip001:{/*Can we make the name of this child when a user selects a city or place?*/
+// 				eat:testing1,
+// 				sleep:testing2,
+// 				see:testing3,
+// 				lat:testing4,
+// 				lng:testing5
 
-		}
-	});
+// 		}
+// 	});
 
 // At the initial load, get a snapshot of the current data.
-day_trip.on("value", function(snapshot) {
+trips.on("value", function(snapshot) {
 
-	var seeS = snapshot.val().austin.see; 
+	// var seeS = snapshot.val().key.see; 
 
 	// Print the initial data to the console.
-	console.log(snapshot.val().austin);
-	console.log(snapshot.val().houston);
+	// console.log(snapshot.val()[key].city);
+	// console.log(snapshot.val().houston);
 	console.log(snapshot.val());
-	console.log(JSON.stringify(seeS));
-	console.log(snapshot.val().austin.sleep);
-	console.log(snapshot.val().austin.sleep.length);
-	console.log(snapshot.val().austin.city);
-	console.log(snapshot.val().houston.city);
-	
-	
+	// console.log(JSON.stringify(seeS));
+	// console.log(snapshot.val().austin.sleep);
+	// console.log(snapshot.val().austin.sleep.length);
+	// console.log(snapshot.val().austin.city);
+	// console.log(snapshot.val().houston.city);
 });
+
+trips.limitToLast(20).on("child_added", function(snap) {
+  // can we do a limit to all children?
+  	console.log(snap.val().city);
+  	// console.log(snap.val().city2);
+});
+	
+
 
 // Why wont' this work!! I want to order by child damnit!!
 // var ref = new Firebase('https://tripmaker-adbb4.firebaseio.com');
