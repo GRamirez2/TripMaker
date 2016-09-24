@@ -39,11 +39,43 @@ $(document).ready(function() {
 	var database = firebase.database();
 
 	// ===Need to either make an on click function to grab the value from the input, or make a button====
-	// $("#").on("click", function(){
+	$("#page1btn").on("click", function(){
+		var tripType = $('#page1btn').val().trim();
+		var userPlace = $('#icon_prefix2').val().trim();
+		newTrip.$type = tripType;
+		newTrip.$place =  userPlace;
+		newTrip.start_trip();
+		
+		console.log(newTrip.$place);
+		console.log(newTrip.$type);
+		
 
- 	//});/*End of on click funtion*/
 
+ 	});/*End of DAY on click funtion*/
 
+	$("#page1btn2").on("click", function(){
+		var tripType = $('#page1btn2').val().trim();
+		var userPlace = $('#icon_prefix2').val().trim();
+		newTrip.$type = tripType;
+		newTrip.$place =  userPlace;
+		newTrip.start_trip();
+
+		console.log(newTrip.$place);
+		console.log(newTrip.$type);
+
+ 	});/*End of WEEKEND on click funtion*/
+
+	$("#page1btn3").on("click", function(){
+		var tripType = $('#page1btn3').val().trim();
+		var userPlace = $('#icon_prefix2').val().trim();
+		newTrip.$type = tripType;
+		newTrip.$place =  userPlace;
+		newTrip.start_trip();
+
+		console.log(newTrip.$place);
+		console.log(newTrip.$type);
+
+ 	});/*End of WEEK on click funtion*/
 
 var newTrip = {
 
@@ -63,11 +95,11 @@ var newTrip = {
 	// will work on an on click method on first new trip screen
 	start_trip: function(){
 
-		$("#findid").html("I want my "+$type+" plans to "+$place+" include");
+		$("#destination").html("I want my "+newTrip.$type+" plans to "+newTrip.$place+" to include");
 
 		var googleKey = 'AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E';
 		// Google API to get lat/lng or place_id
-		queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address="+$place+"&key="+googleKey;
+		queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address="+newTrip.$place+"&key="+googleKey;
 
 		$.ajax({
 			url: queryURL,
@@ -89,8 +121,9 @@ var newTrip = {
 					}); /*End of googl ajax call*/
 					
 					// This is printing to the screen but should be out of this function
-					$("#findid").append('<iframe src=https://www.google.com/maps/embed/v1/place?key='
-						+googleKey+'&q='+$place+'width="800" height="600" frameborder="0" style="border:0" ></iframe>');
+					$("#map").append('<iframe width="100%" height="50%" src=https://www.google.com/maps/embed/v1/place?key='
+						+googleKey+'&q='+newTrip.$place+'></iframe>');
+					
 
 		// ===================Shannon's Weather API call====================================================
 		// $('#addLocation').on('click', function(){
@@ -239,27 +272,28 @@ var newTrip = {
 
 
 
-// At the initial load, get a snapshot of the current data.
-trips.on("value", function(snapshot) {
+// // At the initial load, get a snapshot of the current data.
+// trips.on("value", function(snapshot) {
 
-	// var seeS = snapshot.val().key.see; 
+// 	// var seeS = snapshot.val().key.see; 
 
-	// Print the initial data to the console.
-	// console.log(snapshot.val()[key].city);
-	// console.log(snapshot.val().houston);
-	console.log(snapshot.val());
-	// console.log(JSON.stringify(seeS));
-	// console.log(snapshot.val().austin.sleep);
-	// console.log(snapshot.val().austin.sleep.length);
-	// console.log(snapshot.val().austin.city);
-	// console.log(snapshot.val().houston.city);
-});
+// 	// Print the initial data to the console.
+// 	// console.log(snapshot.val()[key].city);
+// 	// console.log(snapshot.val().houston);
+// 	console.log(snapshot.val());
+// 	// console.log(JSON.stringify(seeS));
+// 	// console.log(snapshot.val().austin.sleep);
+// 	// console.log(snapshot.val().austin.sleep.length);
+// 	// console.log(snapshot.val().austin.city);
+// 	// console.log(snapshot.val().houston.city);
+// });
 
-trips.limitToLast(20).on("child_added", function(snap) {
-  // can we do a limit to all children?
-  	console.log(snap.val().city);
-  	// console.log(snap.val().city2);
-});
+// trips.limitToLast(20).on("child_added", function(snap) {
+//   // can we do a limit to all children?
+//   	console.log(snap.val().city);
+//   	// console.log(snap.val().city2);
+// });
+
 
 
 });/*END OF .ready function*/
