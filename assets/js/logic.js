@@ -24,7 +24,7 @@ $(document).ready(function() {
 
 	});
 
-	// alert("working!");
+	
 	  // Initialize Firebase
 	  var config = {
 	    apiKey: "AIzaSyCJc9HSfoAU52BKbniU98Tb4JaiYPCvxkI",
@@ -38,7 +38,7 @@ $(document).ready(function() {
 
 	var database = firebase.database();
 
-	// ===Need to either make an on click function to grab the value from the input, or make a button====
+	// ===on click function to grab the value from the input====
 	$("#page1btn").on("click", function(){
 		var tripType = $('#page1btn').val().trim();
 		var userPlace = $('#icon_prefix2').val().trim();
@@ -121,7 +121,7 @@ var newTrip = {
 					}); /*End of googl ajax call*/
 					
 					// This is printing to the screen but should be out of this function
-					$("#map").append('<iframe width="100%" height="50%" src=https://www.google.com/maps/embed/v1/place?key='
+					$("#map").html('<iframe width="100%" height="50%" src=https://www.google.com/maps/embed/v1/place?key='
 						+googleKey+'&q='+newTrip.$place+'></iframe>');
 					
 
@@ -148,6 +148,18 @@ var newTrip = {
 		
 
 	}, /*End of start_trip function*/
+
+	print_map: function(){
+
+		var mapCanvas = $("#newMap");
+  		var mapOptions = {
+    		center: new google.maps.LatLng(newTrip.$lat, newTrip.$lng), zoom: 10
+  			};
+
+  		var map = new google.maps.Map(mapCanvas, mapOptions);
+
+//http://www.w3schools.com/howto/tryit.asp?filename=tryhow_google_map_4
+	},
 
 
 
