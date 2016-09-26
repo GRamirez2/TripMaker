@@ -16,8 +16,15 @@
 
 #newMap {
 
-	width: 100%;
+	width: 80%;
 	height: 500px;
+}
+
+.waves-effect,
+.waves-light,
+.btn{
+
+  border-radius: 30px;
 }
 
 

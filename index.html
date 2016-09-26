@@ -82,25 +82,39 @@
     	</div>
 
 		<div class="col s12 m8 l9">
+		<div id="destination">
+				<h4>This is place holder text</h4>
+		</div>
 			<div class="row">
 				<form class="col s12">
 					<div class="row">
 						<div class="input-field col s12">
 							<input id="activity" type="text">
-         					<label for="activity"></label>
-	         				<a id="addActivity" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Add</a>
-						  </div>
-							
+         					<label for="activity">Things to DO or places to SEE</label>
+	         				<a id="addActivity" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Add to my Fun Things to Do and See</a>
 						</div>
-						
+
+						<div class="input-field col s12">
+							<input id="activity" type="text">
+         					<label for="activity">Places to EAT or DRINK</label>
+	         				<a id="addActivity" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Add To my Places to Eat & Drink</a>
+						</div>
+
+						<div class="input-field col s12">
+							<input id="activity" type="text">
+         					<label for="activity">Places that would make a nice homebase</label>
+	         				<a id="addActivity" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Add to my Places to Sleep</a>
+						</div>
+							
 					</div>
-					
-				</form>			  
-			<div id="destination">
-				<h4>San Diego, CA 75 degrees F</h4>
+				</form>		
 			</div>
-		
-			<div class="row">
+					
+						  
+			
+			
+			<!-- THIS WILL GO ON THE RESULTS PAGE -->	
+			<!-- <div class="row">
 				<table>
 			        <thead>
 			          <tr>
@@ -110,69 +124,23 @@
 			        </thead>
 			    </table>
 				
-			</div>
+			</div> -->
 
 	</div>
 
 
 </div>
 
- -->    </div><!-- End of map2 -->
+    </div><!-- End of map2 -->
  
- 		<div id="map" style="border:0;">
+ 	<div id="map" style="border:0;">
     </div><!-- End of map -->
 
     <div id = "newMap">
-       <script src="https://maps.googleapis.com/maps/api/js?callback=newTrip.print_map">
-       </script>
-
     </div><!-- end of newMap -->
+   
 
-    
-     
 
-     <!-- Begining of Google Code with call back -->
-
-    <!-- <script>
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: {lat: 30.268381, lng: -97.742883}
-        });
-
-        var geocoder = new google.maps.Geocoder();
-
-        document.getElementById('submit').addEventListener('click', function() {
-          geocodeAddress(geocoder, map);
-        });
-      }
-
-      function geocodeAddress(geocoder, resultsMap) {
-
-        var address = document.getElementById('address').value;
-
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-              map: resultsMap,
-              position: results[0].geometry.location
-            });
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
-      }
-      console.log(address);
-    </script>
-
-    
-    <!-- original Google code for working in the html document -->
-    <!-- <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E&callback=initMap">
-    </script> -->
-
-<!-- End Google Code -->
 
 <!-- Not sure if I need this google link here? -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -180,10 +148,12 @@
 	<!-- Materialize css -->
 <script type="text/javascript" src="assets/js/materialize.min.js"></script>
 
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E"></script> -->
 
+
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E&callback=map" async defer></script> -->
 <script src="assets/js/logic.js"></script>
-
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E&callback=map">
+</script><!-- End of google api script -->
 </body>
 
 </div><!-- end of map div -->
