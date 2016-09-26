@@ -1,210 +1,419 @@
+var newTrip = (function() {
 
-// add ready function??
+  $("#page2").hide();
+  $("#page1btn").click(function(){
+    $("#page1").hide();
+    $("#page2").show();
 
-$(document).ready(function() {
+  });
 
-	$("#page2").hide();
-	$("#page1btn").click(function(){
-		$("#page1").hide();
-		$("#page2").show();
+  $("#page2").hide();
+  $("#page1btn2").click(function(){
+    $("#page1").hide();
+    $("#page2").show();
 
-	});
+  });
 
-	$("#page2").hide();
-	$("#page1btn2").click(function(){
-		$("#page1").hide();
-		$("#page2").show();
+  $("#page2").hide();
+  $("#page1btn3").click(function(){
+    $("#page1").hide();
+    $("#page2").show();
 
-	});
+  });
 
-	$("#page2").hide();
-	$("#page1btn3").click(function(){
-		$("#page1").hide();
-		$("#page2").show();
+  
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCJc9HSfoAU52BKbniU98Tb4JaiYPCvxkI",
+      authDomain: "tripmaker-adbb4.firebaseapp.com",
+      databaseURL: "https://tripmaker-adbb4.firebaseio.com",
+      storageBucket: "",
+      messagingSenderId: "9591901571"
+    };
 
-	});
+    firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+  // ===on click function to grab the value from the input====
+  $("#page1btn").on("click", function(){
+    var tripType = $('#page1btn').val().trim();
+    var userPlace = $('#icon_prefix2').val().trim();
+    $type = tripType;
+    $place =  userPlace;
+    start_trip();
+    
+
+    
+    console.log($place);
+    console.log($type);
+    
+
+
+  });/*End of DAY on click funtion*/
+
+  $("#page1btn2").on("click", function(){
+    var tripType = $('#page1btn2').val().trim();
+    var userPlace = $('#icon_prefix2').val().trim();
+    $type = tripType;
+    $place =  userPlace;
+    start_trip();
+
+    console.log($place);
+    console.log($type);
+
+  });/*End of WEEKEND on click funtion*/
+
+  $("#page1btn3").on("click", function(){
+    var tripType = $('#page1btn3').val().trim();
+    var userPlace = $('#icon_prefix2').val().trim();
+    $type = tripType;
+    $place =  userPlace;
+    start_trip();
+    
+
+    console.log($place);
+    console.log($type);
+
+  });/*End of WEEK on click funtion*/
+
+
+
+
+
+
+
+  // Grab values from screen and create variables to use in my methods
+  $place = "";
+  $type = "";
+  $key = 0; /*Not sure I can get this number in here*/
+  $seeDo = [];
+  $eatDrink = [];
+  $sleep = [];
+  $notes = "";
+  $lat = 40.70;
+  $lng = -74.25;
+  $placeID =0;
+
+
+  function start_trip() {
+    $("#destination").html("<h5>My <strong>"+$type+"</strong> plans to <strong>"+$place+"</strong> will include</h5>");
+
+    var googleKey = 'AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E';
+    // Google API to get lat/lng or place_id
+    queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address="+$place+"&key="+googleKey;
+
+    $.ajax({
+      url: queryURL,
+      method: 'GET'
+      
+      }).done(function(json) {
+          // Do we need to grab to lat long and put them in the data base?
+          console.log(json);
+          // console.log(json.results[0].place_id);
+          $placeID = json.results[0].place_id;
+          console.log($placeID);
+          // console.log(json.results[0].geometry.location.lat);
+          $lat = json.results[0].geometry.location.lat;
+          console.log($lat);
+          // console.log(json.results[0].geometry.location.lng);
+          $lng = json.results[0].geometry.location.lng;
+          console.log($lng);
+
+          printMap();
+
+          }); /*End of googl ajax call*/
+          
+          // This is printing to the screen but should be out of this function
+          $("#map").html('<iframe width="80%" height="200px" src=https://www.google.com/maps/embed/v1/place?key='
+            +googleKey+'&q='+$place+'></iframe>');
+
+          
+
+
+
+  }
+
+
+  function printMap() {
+    	map = new google.maps.Map(document.getElementById('newMap'), {
+          center: {lat: $lat, lng: $lng},
+          zoom: 8
+        });
+      }
+
+
+  function push_trip() {
+    //This is creating one "parent" in the data base named "trips"
+    var trips = database.ref("trips")
+    trips.push({
+
+        place: $place,
+        type: $type,
+        key: key,
+        see_do:$seeDo,
+        eat_drink: $eatDrink,
+        sleep: $sleep,
+        notes: $notes,
+        lat: $lat,
+        lng: $lng,
+        place_ID: $placeID
+        }).key;
+
+    // empty the local keys after the push to the database
+    empty();
+  }
+
+
+
+  function empty() {
+    $place = "";
+    $type = "";
+    key = 0; /*Not sure I can get this number in here*/
+    $seeDo = [];
+    $eatDrink = [];
+    $sleep = [];
+    $notes = "";
+    lat = 0;
+    lng = 0;
+    place_ID = 0;
+  }
+
+
+
+
+
+window.map = printMap;
+})();
+
+
+
+// ============================================TURNED OFF FOR TEST=========================
+// turned off .rady fuction to see if Maps will work. 
+// $(document).ready(function() {
+
+// 	$("#page2").hide();
+// 	$("#page1btn").click(function(){
+// 		$("#page1").hide();
+// 		$("#page2").show();
+
+// 	});
+
+// 	$("#page2").hide();
+// 	$("#page1btn2").click(function(){
+// 		$("#page1").hide();
+// 		$("#page2").show();
+
+// 	});
+
+// 	$("#page2").hide();
+// 	$("#page1btn3").click(function(){
+// 		$("#page1").hide();
+// 		$("#page2").show();
+
+// 	});
 
 	
-	  // Initialize Firebase
-	  var config = {
-	    apiKey: "AIzaSyCJc9HSfoAU52BKbniU98Tb4JaiYPCvxkI",
-	    authDomain: "tripmaker-adbb4.firebaseapp.com",
-	    databaseURL: "https://tripmaker-adbb4.firebaseio.com",
-	    storageBucket: "",
-	    messagingSenderId: "9591901571"
-	  };
+// 	  // Initialize Firebase
+// 	  var config = {
+// 	    apiKey: "AIzaSyCJc9HSfoAU52BKbniU98Tb4JaiYPCvxkI",
+// 	    authDomain: "tripmaker-adbb4.firebaseapp.com",
+// 	    databaseURL: "https://tripmaker-adbb4.firebaseio.com",
+// 	    storageBucket: "",
+// 	    messagingSenderId: "9591901571"
+// 	  };
 
-	  firebase.initializeApp(config);
+// 	  firebase.initializeApp(config);
 
-	var database = firebase.database();
+// 	var database = firebase.database();
 
-	// ===on click function to grab the value from the input====
-	$("#page1btn").on("click", function(){
-		var tripType = $('#page1btn').val().trim();
-		var userPlace = $('#icon_prefix2').val().trim();
-		newTrip.$type = tripType;
-		newTrip.$place =  userPlace;
-		newTrip.start_trip();
+// 	// ===on click function to grab the value from the input====
+// 	$("#page1btn").on("click", function(){
+// 		var tripType = $('#page1btn').val().trim();
+// 		var userPlace = $('#icon_prefix2').val().trim();
+// 		newTrip.$type = tripType;
+// 		newTrip.$place =  userPlace;
+// 		newTrip.start_trip();
 		
-		console.log(newTrip.$place);
-		console.log(newTrip.$type);
+// 		console.log(newTrip.$place);
+// 		console.log(newTrip.$type);
 		
 
 
- 	});/*End of DAY on click funtion*/
+//  	});/*End of DAY on click funtion*/
 
-	$("#page1btn2").on("click", function(){
-		var tripType = $('#page1btn2').val().trim();
-		var userPlace = $('#icon_prefix2').val().trim();
-		newTrip.$type = tripType;
-		newTrip.$place =  userPlace;
-		newTrip.start_trip();
+// 	$("#page1btn2").on("click", function(){
+// 		var tripType = $('#page1btn2').val().trim();
+// 		var userPlace = $('#icon_prefix2').val().trim();
+// 		newTrip.$type = tripType;
+// 		newTrip.$place =  userPlace;
+// 		newTrip.start_trip();
 
-		console.log(newTrip.$place);
-		console.log(newTrip.$type);
+// 		console.log(newTrip.$place);
+// 		console.log(newTrip.$type);
 
- 	});/*End of WEEKEND on click funtion*/
+//  	});/*End of WEEKEND on click funtion*/
 
-	$("#page1btn3").on("click", function(){
-		var tripType = $('#page1btn3').val().trim();
-		var userPlace = $('#icon_prefix2').val().trim();
-		newTrip.$type = tripType;
-		newTrip.$place =  userPlace;
-		newTrip.start_trip();
+// 	$("#page1btn3").on("click", function(){
+// 		var tripType = $('#page1btn3').val().trim();
+// 		var userPlace = $('#icon_prefix2').val().trim();
+// 		newTrip.$type = tripType;
+// 		newTrip.$place =  userPlace;
+// 		newTrip.start_trip();
 
-		console.log(newTrip.$place);
-		console.log(newTrip.$type);
+// 		console.log(newTrip.$place);
+// 		console.log(newTrip.$type);
 
- 	});/*End of WEEK on click funtion*/
+//  	});/*End of WEEK on click funtion*/
 
-var newTrip = {
+// // function map() {
+// //   var mapCanvas = document.getElementById("newMap");
+// //   var mapOptions = {
+// //     center: new google.maps.LatLng(newTrip.$lat, newTrip.$lng), zoom: 10
+// //   };
+// //   var map = new google.maps.Map(mapCanvas, mapOptions);
+// // };
 
-	// Grab values from screen and create variables to use in my methods
-	$place: "",
-	$type: "",
-	key: 0, /*Not sure I can get this number in here*/
-	$seeDo: [],
-	$eatDrink: [],
-	$sleep: [],
-	$notes: "",
-	$lat:0,
-	$lng:0,
-	$placeID:0,
 
-	// get city and print map to screen, get city and type and print to same page
-	// will work on an on click method on first new trip screen
-	start_trip: function(){
 
-		$("#destination").html("I want my "+newTrip.$type+" plans to "+newTrip.$place+" to include");
+// var newTrip = {
 
-		var googleKey = 'AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E';
-		// Google API to get lat/lng or place_id
-		queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address="+newTrip.$place+"&key="+googleKey;
+// 	// Grab values from screen and create variables to use in my methods
+// 	$place: "",
+// 	$type: "",
+// 	key: 0, /*Not sure I can get this number in here*/
+// 	$seeDo: [],
+// 	$eatDrink: [],
+// 	$sleep: [],
+// 	$notes: "",
+// 	$lat:0,
+// 	$lng:0,
+// 	$placeID:0,
 
-		$.ajax({
-			url: queryURL,
-			method: 'GET'
+// 	// get city and print map to screen, get city and type and print to same page
+// 	// will work on an on click method on first new trip screen
+// 	start_trip: function(){
+
+// 		$("#destination").html("I want my "+newTrip.$type+" plans to "+newTrip.$place+" to include");
+
+// 		var googleKey = 'AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E';
+// 		// Google API to get lat/lng or place_id
+// 		queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address="+newTrip.$place+"&key="+googleKey;
+
+// 		$.ajax({
+// 			url: queryURL,
+// 			method: 'GET'
 			
-			}).done(function(json) {
-					// Do we need to grab to lat long and put them in the data base?
-					console.log(json);
-					// console.log(json.results[0].place_id);
-					newTrip.$placeID = json.results[0].place_id;
-					console.log(newTrip.$placeID);
-					// console.log(json.results[0].geometry.location.lat);
-					newTrip.$lat = json.results[0].geometry.location.lat;
-					console.log(newTrip.$lat);
-					// console.log(json.results[0].geometry.location.lng);
-					newTrip.$lng = json.results[0].geometry.location.lng;
-					console.log(newTrip.$lng);
+// 			}).done(function(json) {
+// 					// Do we need to grab to lat long and put them in the data base?
+// 					console.log(json);
+// 					// console.log(json.results[0].place_id);
+// 					newTrip.$placeID = json.results[0].place_id;
+// 					console.log(newTrip.$placeID);
+// 					// console.log(json.results[0].geometry.location.lat);
+// 					newTrip.$lat = json.results[0].geometry.location.lat;
+// 					console.log(newTrip.$lat);
+// 					// console.log(json.results[0].geometry.location.lng);
+// 					newTrip.$lng = json.results[0].geometry.location.lng;
+// 					console.log(newTrip.$lng);
 
-					}); /*End of googl ajax call*/
+// 					}); /*End of googl ajax call*/
 					
-					// This is printing to the screen but should be out of this function
-					$("#map").html('<iframe width="100%" height="50%" src=https://www.google.com/maps/embed/v1/place?key='
-						+googleKey+'&q='+newTrip.$place+'></iframe>');
+// 					// This is printing to the screen but should be out of this function
+// 					$("#map").html('<iframe width="100%" height="250px" src=https://www.google.com/maps/embed/v1/place?key='
+// 						+googleKey+'&q='+newTrip.$place+'></iframe>');
 					
+				
+// 		// ===================Shannon's Weather API call====================================================
+// 		// $('#addLocation').on('click', function(){
 
-		// ===================Shannon's Weather API call====================================================
-		// $('#addLocation').on('click', function(){
+// 		// 		// Here we grab the text from the input box 
+// 		// 		var city = $('#location-input').val().trim();
 
-		// 		// Here we grab the text from the input box 
-		// 		var city = $('#location-input').val().trim();
-
-		// 		// Here we assemble our URL 
-		// 		var queryURL = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID=29ce5f4e343c631c7edc5ddd5dbeec3f";
+// 		// 		// Here we assemble our URL 
+// 		// 		var queryURL = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID=29ce5f4e343c631c7edc5ddd5dbeec3f";
 
 
-		// 		$.ajax({url: queryURL, method: 'GET'}).done(function(response) {
+// 		// 		$.ajax({url: queryURL, method: 'GET'}).done(function(response) {
 
-		// 			// Retrieves the Location Weather Data
-		// 			var currentWeather = response.main.weather;
+// 		// 			// Retrieves the Location Weather Data
+// 		// 			var currentWeather = response.main.weather;
 
-		// 			$('#LocationWeatherView').append(currentWeather);
-		// 			})
-		// 				return false;
-		// 		});/*End of on click funtion*/ 
-		// ====END ============Shannon's Weather API call====================================================				
+// 		// 			$('#LocationWeatherView').append(currentWeather);
+// 		// 			})
+// 		// 				return false;
+// 		// 		});/*End of on click funtion*/ 
+// 		// ====END ============Shannon's Weather API call====================================================				
 		
 
-	}, /*End of start_trip function*/
+// 	}, /*End of start_trip function*/
 
-	print_map: function(){
+// 	print_map: function(){
 
-		var mapCanvas = $("#newMap");
-  		var mapOptions = {
-    		center: new google.maps.LatLng(newTrip.$lat, newTrip.$lng), zoom: 10
-  			};
+// 		var mapCanvas = $("#newMap");
+//   		var mapOptions = {
+//     		center: new google.maps.LatLng(newTrip.$lat, newTrip.$lng), 
+//     		zoom: 10
+//   			};
 
-  		var map = new google.maps.Map(mapCanvas, mapOptions);
+//   		var map = new google.maps.Map(mapCanvas, mapOptions);
+//   		// return map;
 
-//http://www.w3schools.com/howto/tryit.asp?filename=tryhow_google_map_4
-	},
-
-
+// 	},
 
 
-	// relies on 4 onclicks to add values to the vars above, *need to add to the 3 arrays
-	// then the "save trip" on click will push everything to the Database
-	push_trip: function(){
 
-		//This is creating one "parent" in the data base named "trips"
-		var trips = database.ref("trips")
-		trips.push({
 
-				place: $place,
-				type: $type,
-				key: key,
-				see_do:$seeDo,
-				eat_drink: $eatDrink,
-				sleep: $sleep,
-				notes: $notes,
-				lat: $lat,
-				lng: $lng,
-				place_ID: $placeID
-				}).key;
+// 	// relies on 4 onclicks to add values to the vars above, *need to add to the 3 arrays
+// 	// then the "save trip" on click will push everything to the Database
+// 	push_trip: function(){
 
-		// empty the local keys after the push to the database
-		newTrip.empty();
-	},
+// 		//This is creating one "parent" in the data base named "trips"
+// 		var trips = database.ref("trips")
+// 		trips.push({
 
-	// clear the keys so they don't screw up the next new trip
-	empty: function(){
+// 				place: $place,
+// 				type: $type,
+// 				key: key,
+// 				see_do:$seeDo,
+// 				eat_drink: $eatDrink,
+// 				sleep: $sleep,
+// 				notes: $notes,
+// 				lat: $lat,
+// 				lng: $lng,
+// 				place_ID: $placeID
+// 				}).key;
 
-		newTrip.$place = "";
-		newTrip.$type = "";
-		newTrip.key = 0; /*Not sure I can get this number in here*/
-		newTrip.$seeDo = [];
-		newTrip.$eatDrink = [];
-		newTrip.$sleep = [];
-		newTrip.$notes = "";
-		newTrip.lat = 0;
-		newTrip.lng = 0;
-		newTrip.place_ID = 0;
+// 		// empty the local keys after the push to the database
+// 		newTrip.empty();
+// 	},
 
-	}
+// 	// clear the keys so they don't screw up the next new trip
+// 	empty: function(){
+
+// 		newTrip.$place = "";
+// 		newTrip.$type = "";
+// 		newTrip.key = 0; /*Not sure I can get this number in here*/
+// 		newTrip.$seeDo = [];
+// 		newTrip.$eatDrink = [];
+// 		newTrip.$sleep = [];
+// 		newTrip.$notes = "";
+// 		newTrip.lat = 0;
+// 		newTrip.lng = 0;
+// 		newTrip.place_ID = 0;
+
+// 	},
+
+
 	
-};/*End of newTrip OBJECT*/
+
+	
+	
+
+	
+// };/*End of newTrip OBJECT*/
+// ============================turned off for TEST===========================
+
 
 // ================this can be deleted once we have it writing to the database==============
 // var testing1 = ['testin','to','see','what','an','array','looks','like'];
@@ -307,8 +516,6 @@ var newTrip = {
 // });
 
 
-
-});/*END OF .ready function*/
-
+// });/*END OF .ready function*/
 
 
