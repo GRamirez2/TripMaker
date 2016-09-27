@@ -27,4 +27,11 @@ html,body {
 	width: 100%;
 }
 
+#form2 {
+	float: left;
 
+}
+
+#sidediv {
+	margin-right: 400px;
+}

@@ -19,7 +19,7 @@
 
 <!--create Trip Form-->
 
-<div id="page1" class="container">
+<div id="page1">
   <div class="row">
     <div class="col s12 m3 offset-m5">
       <div class="card">
@@ -63,12 +63,11 @@
 
 
 
-<div id="page2">
+
 
 <!-- top nav bar -->
+		
 	<div class="row">
-
-
 		<div class="col s12">
 			<nav>
 				<div class="nav-wrapper">
@@ -79,71 +78,92 @@
 				</div>
 			</nav>
 		</div>
-
-
 	</div>
 
-	<div class="row">
 
 
+<div id="page2" class="container">
 
-		<!-- side nav bar (collapsable) -->
-		<div class="col s12 m4 l3">
-			 <ul id="slide-out" class="side-nav fixed">
-			        <!-- Modal Trigger -->
- 				 <button data-target="modal1" class="btn modal-trigger">New Trip</button>
-			      <li><a href="#!">My Trips</a></li>
-			    
-			 </ul>
-			    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-			
-    	</div>
+		<!-- side card -->
+	   <div id="sidediv" class="row">
+        <div class="col s3">
+        <form id="form2" class="col s12">
+        	<div class="row">
+	        	<div>
+	        		My (day trip) to (destination) includes
+	        	</div>
+        	</div>
+        	<br>
+        	<div class="row">
+        		<div class="input-field col s6">
+		          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+		          <label for="first_name">Things to do or see</label>
+		          <button class="btn waves-effect waves-light" type="submit" name="action">Add to List
+    				<i class="material-icons right">send</i>
+  				   </button>
+		         </div>     
+        	</div>
+        	<br>
+        	<div class="row">
+        		<div class="input-field col s6">
+		          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+		          <label for="first_name">Places to eat and drink</label>
+		          <button class="btn waves-effect waves-light" type="submit" name="action">Add to List
+    				<i class="material-icons right">send</i>
+  				   </button>
+		         </div> 
+        	</div>
+        	<br>
+        	<div class="row">
+        		<div class="input-field col s6">
+		          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+		          <label for="first_name">Places to sleep</label>
+		          <button class="btn waves-effect waves-light" type="submit" name="action">Add to List
+    				<i class="material-icons right">send</i>
+  				   </button>
+		         </div> 
+        	</div>
+        	<br>
+        	<div class="row">
+        		<div class="input-field col s6">
+		          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+		          <label for="first_name">Contact?</label>
+		          <button class="btn waves-effect waves-light" type="submit" name="action">Add to List
+    				<i class="material-icons right">send</i>
+  				   </button>
+		         </div> 
+        	</div>
+        	<div class="row">
+        		<div class="input-field col s6">
+		          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+		          <label for="first_name">NOTES</label>
+		          <button class="btn waves-effect waves-light" type="submit" name="action">Add to List
+    				<i class="material-icons right">send</i>
+  				   </button>
+		         </div> 
+        	</div>
 
-		<div class="col s12 m8 l9">
-			<div class="row">
-				<form class="col s12">
-					<div class="row">
-						<div class="input-field col s12">
-							<input id="activity" type="text">
-         					<label for="activity"></label>
-	         				<a id="addActivity" class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Add</a>
-						  </div>
-							
-						</div>
-						
-					</div>
-					
-				</form>			  
-			<div id="destination">
-				<h4>San Diego, CA 75 degrees F</h4>
-			</div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Done for Now
+		<i class="material-icons right">send</i>
+		</button>
+
+        </form>
+        	
+        </div>
+
+       
 		
-			<div class="row">
-				<table>
-			        <thead>
-			          <tr>
-			              <th data-field="thingsToDo">Things To Do</th>
-			              <th data-field="PlacesToEatDrink">Places to Eat n' Drink</th>
-			          </tr>
-			        </thead>
-			    </table>
-				
-			</div>
 
-	</div>
-
-
-</div>
 
 
     	<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55134.10748760741!2d-97.78582729412481!3d30.268951190987522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b50e720134c3%3A0x9eb67ecc9e2fcb81!2sLady+Bird+Lake!5e0!3m2!1sen!2sus!4v1474387287063" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
- -->    </div><!-- End of map2 -->
+ -->    <!-- End of map2 -->
  
- 		<div id="map" style="border:0;">
+ 		<div id="map" style="border:0;" class="col s9">
     	</div><!-- End of id map3 -->
     
     	
-    </div>
+ </div>
 
     
      
