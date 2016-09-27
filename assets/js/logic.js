@@ -89,6 +89,7 @@ $("#seeDoBtn").on("click", function(){
 		};
 
     $('#seeDo').val("");
+    return false;
 
 });/* END of seeDoBtn button */
 
@@ -103,6 +104,7 @@ $("#eatDrinkBtn").on("click", function(){
 			};
 
     $('#eatDrink').val("");
+    return false;
 
 });/* END of eatDrink button */
 
@@ -118,6 +120,7 @@ if ($('#sleep').val().length == 0) {
 			};
 
     $('#sleep').val("");
+    return false;
 
 });/* END of sleep button */
 
