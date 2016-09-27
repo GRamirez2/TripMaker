@@ -171,6 +171,8 @@ $("#seeDo2").on("click", function(){
 
           printMap();
 
+          push_trip();
+
 
           }); /*End of googl ajax call*/
          
@@ -178,7 +180,7 @@ $("#seeDo2").on("click", function(){
           // $("#map").html('<iframe width="80%" height="200px" src=https://www.google.com/maps/embed/v1/place?key='
           //   +googleKey+'&q='+$place+'></iframe>');
 
-          push_trip();
+          
           
   }
 
@@ -231,19 +233,30 @@ $("#seeDo2").on("click", function(){
   };
 
 
-  function addTo(){
-  	// updating data for three new key pairs without deleting original data. Need to figure out how to get the key in place
-	var trips = database.ref("trips")
-	trips.update({
+	function addTo(){
+    	
+		var ref = firebase.database().ref("trips");
+		ref.orderByChild("key").limitToLast(1).on("child_added", function(snapshot) {
+		  console.log(snapshot.key);
+		  var Key = (snapshot.key);
+		  	
+		  	// updating data for three new key pairs without deleting original data. Need to figure out how to get the key in place
+			/*It is not seeing this var value*/
+					trips.update({
 
-		[$key]"/to_do": $seeDo,
-		"-KSgEKKGo7uoX1oPb_AX/to_eat": $eatDrink,
-		"-KSgEKKGo7uoX1oPb_AX/to_sleep": $sleep
+						[Key +'/to_do']: $seeDo,
+						[Key +'/to_eat']: $eatDrink,
+						[Key +'/to_sleep']: $sleep
+						// "-KSgEKKGo7uoX1oPb_AX/to_eat": $eatDrink,
+						// "-KSgEKKGo7uoX1oPb_AX/to_sleep": $sleep
 
-	});
+					});/*end of trips.update*/
 
+		});/*end of snapshot*/
 
 	};/*END of addTO function*/
+
+
   
   function empty() {
     $place = "";
@@ -267,8 +280,8 @@ trips.on("value", function(snapshot) {
 
 	// Print the initial data to the console.
 	// console.log(snapshot.val()[key].city);
-	// console.log(snapshot.val().houston);
 	console.log(snapshot.val());
+	console.log(snapshot.exportVal());
 	// console.log(JSON.stringify(seeS));
 	// console.log(snapshot.val().austin.sleep);
 	// console.log(snapshot.val().austin.sleep.length);
@@ -276,11 +289,9 @@ trips.on("value", function(snapshot) {
 	// console.log(snapshot.val().houston.city);
 });
 
-trips.limitToLast(5).on("child_added", function(snap) {
-  // can we do a limit to all children?
-  	console.log(snap.val().key);
-  	// console.log(snap.val().city2);
-});
+// trips.limitToLast(1).on("value", function(snapshot) {
+// 	console.log(snapshot.name());
+// });
 
 
 
