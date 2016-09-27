@@ -184,31 +184,25 @@ $("#seeDo2").on("click", function(){
 
 
   function addTo(){
-  	// Pushing data for the three catagories. 
-  	
-  	  var newData = {};
-	newData['/trips/-KScjODYzqyr6VSxBYPi']= {
-								
-								
-								see_do: "mountain, city",
-								eat_drink: "wine",
-								sleep: "tree house"
-						        
-							};
+  	// updating data for three new key pairs without deleting original data. Need to figure out how to get the key in place
+	var trips = database.ref("trips")
+	trips.update({
 
-	database.ref().update(newData);
-	// var trips = database.ref("trips")
+		"-KSgEKKGo7uoX1oPb_AX/to_do": ['Do', 'we', 'have', 'to', 'use', 'an', 'array'],
+		"-KSgEKKGo7uoX1oPb_AX/to_eat": "place to eat""another place to eat",
+		"-KSgEKKGo7uoX1oPb_AX/to_sleep": ['Somewhere to sleep']
+	});
 
-	// var updatechild = trips.child(["-KScjODYzqyr6VSxBYPi"]);
-	// 	updatechild.update({
-	// 		  	see_do: [mountain, city, town],
-	// 			eat_drink: "wine",
-	// 			sleep: "tree house"
-	// 			});
+	// Testing second update to see if it added or replaced original array, it replaces it.
+	// To do this correctly we need to pull the array down, then update the entire thing and update that key again with the new full array 
+	trips.update({
 
-		alert("working");
+		"-KSgEKKGo7uoX1oPb_AX/to_do": ['or', 'can', 'we', 'change', 'the', 'array']
+	});
+		
+alert("working");
 
-};
+};/*END of addTO function*/
   
   function empty() {
     $place = "";
@@ -221,7 +215,8 @@ $("#seeDo2").on("click", function(){
     lat = 0;
     lng = 0;
     place_ID = 0;
-  }
+
+  };/*End of empty function*/
 
 
 
