@@ -80,13 +80,47 @@ var newTrip = (function() {
 
 // Click listener to seeDo value to add to an array
 $("#seeDoBtn").on("click", function(){
-    var seeDo = $("#seeDo").val().trim();
-    $seeDo.push(seeDo);
+    if ($('#seeDo').val().length == 0) {
+      alert('I think you pressed the wrong button, your PLACES TO SEE & DO field is empty');
 
-    console.log($seeDo);
+	}else {var seeDo = $("#seeDo").val().trim();
+		    $seeDo.push(seeDo);
+		    console.log($seeDo);
+		};
+
     $('#seeDo').val("");
 
 });/* END of seeDoBtn button */
+
+// Click listener to eatDrink value to add to an array
+$("#eatDrinkBtn").on("click", function(){
+    if ($('#eatDrink').val().length == 0) {
+      alert('I think you pressed the wrong button, your Eat/Drink field is empty');
+
+	}else {var eatDrink = $("#eatDrink").val().trim();
+    		$eatDrink.push(eatDrink);
+    		console.log($eatDrink);
+			};
+
+    $('#eatDrink').val("");
+
+});/* END of eatDrink button */
+
+// Click listener to Sleep value to add to an array
+$("#sleepBtn").on("click", function(){
+    
+if ($('#sleep').val().length == 0) {
+      alert('I think you pressed the wrong button, your PLACES TO SLEEP field is empty');
+
+	}else{var sleep = $("#sleep").val().trim();
+		    $sleep.push(sleep);
+		    console.log($sleep);
+			};
+
+    $('#sleep').val("");
+
+});/* END of sleep button */
+
 
 
 // This is test button to check my update to the database, but a reminder we need a SAVE button
@@ -160,7 +194,7 @@ $("#seeDo2").on("click", function(){
   function push_trip() {
     //This is creating one "parent" in the data base named "trips"
     var trips = database.ref("trips")
-    uniqueID = trips.push({
+    $key = trips.push({
 
         place: $place,
         type: $type,
@@ -178,9 +212,9 @@ $("#seeDo2").on("click", function(){
    
     
     var newData = {};
-	newData['/trips/'+uniqueID]= {
+	newData['/trips/'+$key]= {
 								
-								key: uniqueID,
+								key: $key,
 								place: $place,
 						        type: $type,
 						        see_do: $seeDo,
@@ -202,33 +236,26 @@ $("#seeDo2").on("click", function(){
 	var trips = database.ref("trips")
 	trips.update({
 
-		"-KSgEKKGo7uoX1oPb_AX/to_do": ['Do', 'we', 'have', 'to', 'use', 'an', 'array'],
-		"-KSgEKKGo7uoX1oPb_AX/to_eat": "place to eat",
-		"-KSgEKKGo7uoX1oPb_AX/to_sleep": ['Somewhere to sleep']
+		[$key]"/to_do": $seeDo,
+		"-KSgEKKGo7uoX1oPb_AX/to_eat": $eatDrink,
+		"-KSgEKKGo7uoX1oPb_AX/to_sleep": $sleep
+
 	});
 
-	// Testing second update to see if it added or replaced original array, it replaces it.
-	// To do this correctly we need to pull the array down, then update the entire thing and update that key again with the new full array 
-	trips.update({
 
-		"-KSgEKKGo7uoX1oPb_AX/to_do": ['or', 'can', 'we', 'change', 'the', 'array']
-	});
-		
-alert("working");
-
-};/*END of addTO function*/
+	};/*END of addTO function*/
   
   function empty() {
     $place = "";
     $type = "";
-    key = 0; /*Not sure I can get this number in here*/
+    $key = 0; /*Not sure I can get this number in here*/
     $seeDo = [];
     $eatDrink = [];
     $sleep = [];
     $notes = "";
-    lat = 0;
-    lng = 0;
-    place_ID = 0;
+    $lat = 0;
+    $lng = 0;
+    $place_ID = 0;
 
   };/*End of empty function*/
 
