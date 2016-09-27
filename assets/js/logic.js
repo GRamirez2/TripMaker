@@ -8,21 +8,10 @@ $(document).ready(function() {
 		$("#page1").hide();
 		$("#page2").show();
 
-	});
-
-	$("#page2").hide();
-	$("#page1btn2").click(function(){
-		$("#page1").hide();
-		$("#page2").show();
 
 	});
 
-	$("#page2").hide();
-	$("#page1btn3").click(function(){
-		$("#page1").hide();
-		$("#page2").show();
 
-	});
 
 	// alert("working!");
 	  // Initialize Firebase
@@ -40,8 +29,8 @@ $(document).ready(function() {
 
 	// ===Need to either make an on click function to grab the value from the input, or make a button====
 	$("#page1btn").on("click", function(){
-		var tripType = $('#page1btn').val().trim();
-		var userPlace = $('#icon_prefix2').val().trim();
+		var tripType = $('input[name="group1"]:checked').val();
+		var userPlace = $('#destination').val().trim();
 		newTrip.$type = tripType;
 		newTrip.$place =  userPlace;
 		newTrip.start_trip();
@@ -54,8 +43,8 @@ $(document).ready(function() {
  	});/*End of DAY on click funtion*/
 
 	$("#page1btn2").on("click", function(){
-		var tripType = $('#page1btn2').val().trim();
-		var userPlace = $('#icon_prefix2').val().trim();
+		var tripType = $('input[name="group1"]:checked').val();
+		var userPlace = $('#destination').val().trim();
 		newTrip.$type = tripType;
 		newTrip.$place =  userPlace;
 		newTrip.start_trip();
@@ -66,8 +55,8 @@ $(document).ready(function() {
  	});/*End of WEEKEND on click funtion*/
 
 	$("#page1btn3").on("click", function(){
-		var tripType = $('#page1btn3').val().trim();
-		var userPlace = $('#icon_prefix2').val().trim();
+		var tripType = $('input[name="group1"]:checked').val();
+		var userPlace = $('#destination').val().trim();
 		newTrip.$type = tripType;
 		newTrip.$place =  userPlace;
 		newTrip.start_trip();

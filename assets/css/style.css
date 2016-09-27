@@ -1,19 +1,30 @@
 
-    header, main, footer {
-      padding-left: 300px;
-    }
-
-    @media only screen and (max-width : 992px) {
-      header, main, footer {
-        padding-left: 0;
-      }
-    }
+ 
 
 
 #slide-out {
+
 	margin-top: 90px;
+
 }
 
+#page1 {
+	background: url("HD-Beach-Wallpaper-8.jpg");
+	background-size: cover;
+	height: 100%;
+	width: 100%;
 
+}
+
+.card {
+		position: relative;
+		margin-top: 200px;
+		margin-right: 40px;
+}
+
+html,body {
+	height: 100%;
+	width: 100%;
+}
 
 
