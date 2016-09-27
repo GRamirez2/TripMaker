@@ -34,6 +34,7 @@ var newTrip = (function() {
     firebase.initializeApp(config);
 
   var database = firebase.database();
+  var trips = database.ref("trips")
 
   // ===on click function to grab the value from the input====
   $("#page1btn").on("click", function(){
@@ -76,10 +77,23 @@ var newTrip = (function() {
 
   });/*End of WEEK on click funtion*/
 
+
+// Click listener to seeDo value to add to an array
+$("#seeDoBtn").on("click", function(){
+    var seeDo = $("#seeDo").val().trim();
+    $seeDo.push(seeDo);
+
+    console.log($seeDo);
+    $('#seeDo').val("");
+
+});/* END of seeDoBtn button */
+
+
+// This is test button to check my update to the database, but a reminder we need a SAVE button
 $("#seeDo2").on("click", function(){
     addTo();
 
-});/* END of */
+});/* END of TEST seedo2 button */
 
 
 
@@ -189,7 +203,7 @@ $("#seeDo2").on("click", function(){
 	trips.update({
 
 		"-KSgEKKGo7uoX1oPb_AX/to_do": ['Do', 'we', 'have', 'to', 'use', 'an', 'array'],
-		"-KSgEKKGo7uoX1oPb_AX/to_eat": "place to eat""another place to eat",
+		"-KSgEKKGo7uoX1oPb_AX/to_eat": "place to eat",
 		"-KSgEKKGo7uoX1oPb_AX/to_sleep": ['Somewhere to sleep']
 	});
 
@@ -218,7 +232,28 @@ alert("working");
 
   };/*End of empty function*/
 
+// =======pulling data from the database===============
 
+trips.on("value", function(snapshot) {
+
+	// var seeS = snapshot.val().key.see; 
+
+	// Print the initial data to the console.
+	// console.log(snapshot.val()[key].city);
+	// console.log(snapshot.val().houston);
+	console.log(snapshot.val());
+	// console.log(JSON.stringify(seeS));
+	// console.log(snapshot.val().austin.sleep);
+	// console.log(snapshot.val().austin.sleep.length);
+	// console.log(snapshot.val().austin.city);
+	// console.log(snapshot.val().houston.city);
+});
+
+trips.limitToLast(5).on("child_added", function(snap) {
+  // can we do a limit to all children?
+  	console.log(snap.val().key);
+  	// console.log(snap.val().city2);
+});
 
 
 
@@ -533,26 +568,26 @@ window.map = printMap;
 
 
 // At the initial load, get a snapshot of the current data.
-firebase.database().ref("trips").on("value", function(snapshot) {
+// firebase.database().ref("trips").on("value", function(snapshot) {
 
-	// var seeS = snapshot.val().key.see; 
+// 	// var seeS = snapshot.val().key.see; 
 
-	// Print the initial data to the console.
-	// console.log(snapshot.val()[key].city);
-	// console.log(snapshot.val().houston);
-	console.log(snapshot.val());
-	// console.log(JSON.stringify(seeS));
-	// console.log(snapshot.val().austin.sleep);
-	// console.log(snapshot.val().austin.sleep.length);
-	// console.log(snapshot.val().austin.city);
-	// console.log(snapshot.val().houston.city);
-});
+// 	// Print the initial data to the console.
+// 	// console.log(snapshot.val()[key].city);
+// 	// console.log(snapshot.val().houston);
+// 	console.log(snapshot.val());
+// 	// console.log(JSON.stringify(seeS));
+// 	// console.log(snapshot.val().austin.sleep);
+// 	// console.log(snapshot.val().austin.sleep.length);
+// 	// console.log(snapshot.val().austin.city);
+// 	// console.log(snapshot.val().houston.city);
+// });
 
-firebase.database().ref("trips").limitToLast(5).on("child_added", function(snap) {
-  // can we do a limit to all children?
-  	console.log(snap.val().key);
-  	// console.log(snap.val().city2);
-});
+// firebase.database().ref("trips").limitToLast(5).on("child_added", function(snap) {
+//   // can we do a limit to all children?
+//   	console.log(snap.val().key);
+//   	// console.log(snap.val().city2);
+// });
 
 
 // });/*END OF .ready function*/
