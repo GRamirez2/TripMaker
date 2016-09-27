@@ -43,8 +43,6 @@ var newTrip = (function() {
     $place =  userPlace;
     start_trip();
     
-
-    
     console.log($place);
     console.log($type);
     
@@ -70,6 +68,7 @@ var newTrip = (function() {
     $type = tripType;
     $place =  userPlace;
     start_trip();
+   
     
 
     console.log($place);
@@ -77,8 +76,10 @@ var newTrip = (function() {
 
   });/*End of WEEK on click funtion*/
 
+$("#seeDo2").on("click", function(){
+    addTo();
 
-
+});/* END of */
 
 
 
@@ -86,14 +87,14 @@ var newTrip = (function() {
   // Grab values from screen and create variables to use in my methods
   $place = "";
   $type = "";
-  $key = 0; /*Not sure I can get this number in here*/
+  $key = ""; /*Not sure I can get this number in here*/
   $seeDo = [];
   $eatDrink = [];
   $sleep = [];
   $notes = "";
-  $lat = 40.70;
-  $lng = -74.25;
-  $placeID =0;
+  $lat = 30.267153;
+  $lng = -97.7430608;
+  $placeID = "";
 
 
   function start_trip() {
@@ -122,23 +123,22 @@ var newTrip = (function() {
 
           printMap();
 
+
           }); /*End of googl ajax call*/
-          
+         
           // This is printing to the screen but should be out of this function
-          $("#map").html('<iframe width="80%" height="200px" src=https://www.google.com/maps/embed/v1/place?key='
-            +googleKey+'&q='+$place+'></iframe>');
+          // $("#map").html('<iframe width="80%" height="200px" src=https://www.google.com/maps/embed/v1/place?key='
+          //   +googleKey+'&q='+$place+'></iframe>');
 
+          push_trip();
           
-
-
-
   }
 
 
   function printMap() {
     	map = new google.maps.Map(document.getElementById('newMap'), {
           center: {lat: $lat, lng: $lng},
-          zoom: 8
+          zoom: 12
         });
       }
 
@@ -146,12 +146,11 @@ var newTrip = (function() {
   function push_trip() {
     //This is creating one "parent" in the data base named "trips"
     var trips = database.ref("trips")
-    trips.push({
+    uniqueID = trips.push({
 
         place: $place,
         type: $type,
-        key: key,
-        see_do:$seeDo,
+        see_do: $seeDo,
         eat_drink: $eatDrink,
         sleep: $sleep,
         notes: $notes,
@@ -160,12 +159,57 @@ var newTrip = (function() {
         place_ID: $placeID
         }).key;
 
-    // empty the local keys after the push to the database
-    empty();
-  }
+    // empty the local keys after the UPDATE to the database NOT on the PUSH
+    // empty();
+   
+    
+    var newData = {};
+	newData['/trips/'+uniqueID]= {
+								
+								key: uniqueID,
+								place: $place,
+						        type: $type,
+						        see_do: $seeDo,
+						        eat_drink: $eatDrink,
+						        sleep: $sleep,
+						        notes: $notes,
+						        lat: $lat,
+						        lng: $lng,
+						        place_ID: $placeID
+							};
+
+	database.ref().update(newData);
+
+  };
 
 
+  function addTo(){
+  	// Pushing data for the three catagories. 
+  	
+  	  var newData = {};
+	newData['/trips/-KScjODYzqyr6VSxBYPi']= {
+								
+								
+								see_do: "mountain, city",
+								eat_drink: "wine",
+								sleep: "tree house"
+						        
+							};
 
+	database.ref().update(newData);
+	// var trips = database.ref("trips")
+
+	// var updatechild = trips.child(["-KScjODYzqyr6VSxBYPi"]);
+	// 	updatechild.update({
+	// 		  	see_do: [mountain, city, town],
+	// 			eat_drink: "wine",
+	// 			sleep: "tree house"
+	// 			});
+
+		alert("working");
+
+};
+  
   function empty() {
     $place = "";
     $type = "";
@@ -493,27 +537,27 @@ window.map = printMap;
 
 
 
-// // At the initial load, get a snapshot of the current data.
-// trips.on("value", function(snapshot) {
+// At the initial load, get a snapshot of the current data.
+firebase.database().ref("trips").on("value", function(snapshot) {
 
-// 	// var seeS = snapshot.val().key.see; 
+	// var seeS = snapshot.val().key.see; 
 
-// 	// Print the initial data to the console.
-// 	// console.log(snapshot.val()[key].city);
-// 	// console.log(snapshot.val().houston);
-// 	console.log(snapshot.val());
-// 	// console.log(JSON.stringify(seeS));
-// 	// console.log(snapshot.val().austin.sleep);
-// 	// console.log(snapshot.val().austin.sleep.length);
-// 	// console.log(snapshot.val().austin.city);
-// 	// console.log(snapshot.val().houston.city);
-// });
+	// Print the initial data to the console.
+	// console.log(snapshot.val()[key].city);
+	// console.log(snapshot.val().houston);
+	console.log(snapshot.val());
+	// console.log(JSON.stringify(seeS));
+	// console.log(snapshot.val().austin.sleep);
+	// console.log(snapshot.val().austin.sleep.length);
+	// console.log(snapshot.val().austin.city);
+	// console.log(snapshot.val().houston.city);
+});
 
-// trips.limitToLast(20).on("child_added", function(snap) {
-//   // can we do a limit to all children?
-//   	console.log(snap.val().city);
-//   	// console.log(snap.val().city2);
-// });
+firebase.database().ref("trips").limitToLast(5).on("child_added", function(snap) {
+  // can we do a limit to all children?
+  	console.log(snap.val().key);
+  	// console.log(snap.val().city2);
+});
 
 
 // });/*END OF .ready function*/
