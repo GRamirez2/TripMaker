@@ -54,9 +54,8 @@ var newTrip = (function() {
   // ===on click function to grab the value from the input====
   $("#page1btn").on("click", function(){
     
-    var tripType = $('#day').val().trim();/*fix this*/
-
-    var userPlace = $('#placeInput').val().trim();
+    var tripType = $('#destination').val().trim();
+    var userPlace = $("input[name=tripType]:checked").val();/*fix this*/
     $type = tripType;
     $place =  userPlace;
     start_trip();
