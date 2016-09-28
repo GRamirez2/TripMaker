@@ -8478,8 +8478,11 @@ padding-left: 0px;
 .btn{
 
   border-radius: 30px;
+ /* background-color: #9e9e9e ;*/
+
 
 }
+
 
 #cardFix{
   margin-top: 5em;
@@ -8501,6 +8504,10 @@ padding-left: 0px;
 .tlBtn{
   margin-right: 1.5em;
   
+}
+
+#logo{
+  color: #9e9e9e;
 }
 
 /*#page1btn{
