@@ -242,8 +242,8 @@ $("#seeDo2").on("click", function(){
     var newData = {};
 	newData['/trips/'+$key]= {
 								
-								key: $key,
-								place: $place,
+								    key: $key,
+								    place: $place,
 						        type: $type,
 						        see_do: $seeDo,
 						        eat_drink: $eatDrink,
@@ -263,7 +263,7 @@ $("#seeDo2").on("click", function(){
     	
 		var ref = firebase.database().ref("trips");
 		ref.orderByChild("key").limitToLast(1).on("child_added", function(snapshot) {
-		  console.log(snapshot.key);
+		  // console.log(snapshot.key);
 		  var Key = (snapshot.key);
 		  	
 		  	// updating data for three new key pairs without deleting original data. Need to figure out how to get the key in place
@@ -297,6 +297,12 @@ $("#seeDo2").on("click", function(){
     $place_ID = 0;
 
   };/*End of empty function*/
+
+
+
+
+
+  
 
 // =======pulling data from the database===============
 
