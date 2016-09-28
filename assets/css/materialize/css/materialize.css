@@ -8459,7 +8459,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     margin-bottom: 5em;
   }
 }
-
+/*==================  GEORGE'S CHANGES===========*/
 #navbar,
 #navbar1{
 margin-bottom: 0px;
@@ -8470,6 +8470,39 @@ padding-left: 0px;
 
 #logo{
 
-  padding-left: 4em;
+  padding-left: 2em;
 }
 
+.waves-effect,
+.waves-light,
+.btn{
+
+  border-radius: 30px;
+
+}
+
+#cardFix{
+  margin-top: 5em;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 30px;
+}
+
+#cardActionFix{
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  float: right;
+  background-color: transparent;
+}
+.trBtn{
+  margin-right: 1.5em;
+
+}
+.tlBtn{
+  margin-right: 1.5em;
+  
+}
+
+/*#page1btn{
+  float:right;
+}*/

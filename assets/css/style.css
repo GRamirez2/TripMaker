@@ -28,19 +28,13 @@ html,body {
 	height: 100%;
 	width: 100%;
 
-/*#newMap {
+#newMap {
 
 	width: 80%;
 	height: 500px;
-}*/
-
-.waves-effect,
-.waves-light,
-.btn{
-
-  border-radius: 30px;
-
 }
+
+
 
 #form2 {
 	float: left;
@@ -52,6 +46,8 @@ html,body {
 	width: 600px;
 
 }
+
+
 
 
 
