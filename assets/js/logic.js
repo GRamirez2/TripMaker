@@ -54,8 +54,8 @@ var newTrip = (function() {
   // ===on click function to grab the value from the input====
   $("#page1btn").on("click", function(){
     
-    var tripType = $('#destination').val().trim();
-    var userPlace = $("input[name=tripType]:checked").val();/*fix this*/
+    var userPlace = $('#destination').val().trim();
+    var tripType = $("input[name=tripType]:checked").val();/*fix this*/
     $type = tripType;
     $place =  userPlace;
     start_trip();
@@ -63,48 +63,33 @@ var newTrip = (function() {
     console.log($place);
     console.log($type);
 
-	});
-    
-    
+	});/*End of DAY on click function*/
+  //   //===================THESE FUNCTIONS CAN BE DELETED================== 
 
+  // $("#page1btn2").on("click", function(){
+  //   var tripType = $('#page1btn2').val().trim();
+  //   var userPlace = $('#icon_prefix2').val().trim();
+  //   $type = tripType;
+  //   $place =  userPlace;
+  //   start_trip();
 
-//click button that Miguel changed to read radio buttons
-	// ===Need to either make an on click function to grab the value from the input, or make a button====
-	/*$("#page1btn").on("click", function(){
-		var tripType = $('input[name="group1"]:checked').val();
-		var userPlace = $('#destination').val().trim();
-		newTrip.$type = tripType;
-		newTrip.$place =  userPlace;
-		newTrip.start_trip();
+  //   console.log($place);
+  //   console.log($type);
 
-  });/*End of DAY on click funtion*/
+  // });/*End of WEEKEND on click funtion*/
 
-  $("#page1btn2").on("click", function(){
-    var tripType = $('#page1btn2').val().trim();
-    var userPlace = $('#icon_prefix2').val().trim();
-    $type = tripType;
-    $place =  userPlace;
-    start_trip();
-
-    console.log($place);
-    console.log($type);
-
-  });/*End of WEEKEND on click funtion*/
-
-  $("#page1btn3").on("click", function(){
-    var tripType = $('#page1btn3').val().trim();
-    var userPlace = $('#icon_prefix2').val().trim();
-    $type = tripType;
-    $place =  userPlace;
-    start_trip();
+  // $("#page1btn3").on("click", function(){
+  //   var tripType = $('#page1btn3').val().trim();
+  //   var userPlace = $('#icon_prefix2').val().trim();
+  //   $type = tripType;
+  //   $place =  userPlace;
+  //   start_trip();
    
-    
+  //   console.log($place);
+  //   console.log($type);
 
-    console.log($place);
-    console.log($type);
-
-  });/*End of WEEK on click funtion*/
-
+  // });/*End of WEEK on click funtion*/
+  // ===================END OF BUTTONS THAT CAN BE DELETED ===============
 
 	// Click listener to seeDo value to add to an array
 	$("#seeDoBtn").on("click", function(){
@@ -177,7 +162,7 @@ var newTrip = (function() {
 
 
   function start_trip() {
-    $("#destination").html("<h5>My <strong>"+$type+"</strong> plans to <strong>"+$place+"</strong> will include</h5>");
+    $("#details").html("<h5>My <strong>"+$type+"</strong> plans to <strong>"+$place+"</strong> will include</h5>");
 
     var googleKey = 'AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E';
     // Google API to get lat/lng or place_id
@@ -204,12 +189,11 @@ var newTrip = (function() {
 
           push_trip();
 
+          console.log($lat)
+          console.log($lng)
+
 
           }); /*End of googl ajax call*/
-         
-          // This is printing to the screen but should be out of this function
-          // $("#map").html('<iframe width="80%" height="200px" src=https://www.google.com/maps/embed/v1/place?key='
-          //   +googleKey+'&q='+$place+'></iframe>');
 
           
           
