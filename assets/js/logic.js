@@ -298,7 +298,58 @@ $("#seeDo2").on("click", function(){
 
   };/*End of empty function*/
 
+var destination = [];
+var idKey = [];
+var type = [];
 
+database.ref("trips").on("value", function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+
+    	var key = childSnapshot.key;
+    	var childData = childSnapshot.val();
+    	idKey.push(key);
+    	destination.push(childData.place);
+    	type.push(childData.type);
+    // 	console.log(snapshot.val());
+    // 	console.log(snapshot);
+    //     console.log(key);
+  		// console.log(childData.place);
+  		// console.log(childData.type);
+  		createButtons();
+  	});
+});
+
+function createButtons(){
+
+	$('.dayTrips').empty();
+	$('.weekendTrips').empty();
+	$('.weekTrips').empty();
+
+
+	for (var i = 0; i < destination.length; i++) {
+
+		var button = $('<button>')
+		button.addClass('buttons');
+		button.text(destination[i]);
+		button.attr({'id': idKey[i], 'data-destination': destination[i], 'data-type': type[i]});
+// console.log(button.data('type'))
+		if (button.data('type') == 'Day Trip') {
+
+			$('.dayTrips').append(button);
+
+		} else if (button.data('type') == 'Weekend Trip') {
+
+			$('.weekendTrips').append(button);
+
+		} else if (button.data('type') == 'Week Trip') {
+
+			$('.weekTrips').append(button);
+
+		}
+
+	}
+
+}
 
 
 
