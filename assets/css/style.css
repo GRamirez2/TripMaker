@@ -52,6 +52,21 @@ html,body {
 	float: right;
 }
 
+#dayList {
+	height: 1000px;
+	
+}
+
+#weekEndList {
+	height: 1000px;
+	
+}
+
+#weekList {
+	height: 1000px;
+	
+}
+
 
 
 

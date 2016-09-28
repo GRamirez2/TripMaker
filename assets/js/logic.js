@@ -17,14 +17,32 @@ var newTrip = (function() {
 		
 	});
 
-	// $("#donebtn").click(function(event){
-	// 	event.preventDefault();
-	// 	hideAll();
-	// 	$("#page3").show();
-	// 	// return false;
+	 $("#seeTripbtn").click(function(event){
+		event.preventDefault();
+	 	hideAll();
+	 	$("#page3").show();
+	 	
 
 
- //  });
+   });
+
+ $("#createBtn").click(function(event){
+		event.preventDefault();
+	 	hideAll();
+	 	$("#page1").show();
+	 	
+
+
+   });
+
+  $("#logo").click(function(event){
+		event.preventDefault();
+	 	hideAll();
+	 	$("#page1").show();
+	 	
+
+
+   });
 
 
 	function hideAll(){
