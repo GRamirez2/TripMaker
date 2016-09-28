@@ -16,6 +16,7 @@
 
 </head>
 <body>
+
 <div id="page1">
 	  <div class="row">
 	    <form class="col s12">
@@ -49,100 +50,254 @@
 
 <div id="page2">
 
+
 <!-- top nav bar -->
-	<div class="row">
-
-
+		
+	<div id="navbar" class="row">
 		<div class="col s12">
 			<nav>
 				<div class="nav-wrapper">
 					<a href="#" class="brand-logo">TripMaker</a>
 					<ul id="nav-mobile" class="right hide-on-med-and-down">
-						<li><a href="#">Placeholder</a></li>
+						<button class="btn waves-effect waves-light" type="submit" name="action">Create New Trip
+  				   		</button>
+					</ul>
+					
+					<ul id="nav-mobile" class="right hide-on-med-and-down">
+						<button class="btn waves-effect waves-light" type="submit" name="action">See My Trips
+  				   		</button>
 					</ul>
 				</div>
 			</nav>
 		</div>
-
-
 	</div>
 
-	<div class="row">
+
+<!--create Trip Form-->
+
+
+<div id="page1">
+  <div class="row">
+    <div class="col s12 m3 offset-m5">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title black-text"></span>
+          <form>
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Enter Destination" id="destination" type="text" class="validate">
+                <label for="destination" class="active">Where do you want to go?</label>
+              </div>
+            </div>
+              <p>
+		      <input class="with-gap" name="group1" type="radio" id="test1" />
+		      <label for="test1">Day Trip</label>
+		    </p>
+		    <p>
+		      <input class="with-gap" name="group1" type="radio" id="test2" />
+		      <label for="test2">Weekend</label>
+		    </p>
+		    <p>
+		      <input class="with-gap" name="group1" type="radio" id="test3"  />
+		      <label for="test3">Week</label>
+		    </p>
+         </form>
+        </div>
+        <div class="card-action">
+          <button id="page1btn" class="btn waves-effect waves-light" type="submit" name="action">Submit
+    		<i class="material-icons right">send</i>
+  		  </button>
+        </div>
+      </div>
+    </div>
+   </div>
+</div>
 
 
 
-		<!-- side nav bar (collapsable) -->
-		<div class="col s12 m4 l3">
-			 <ul id="slide-out" class="side-nav fixed">
-			        <!-- Modal Trigger -->
- 				 <button data-target="modal1" class="btn modal-trigger">New Trip</button>
-			      <li><a href="#!">My Trips</a></li>
-			    
-			 </ul>
-			    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-			
-    	</div>
+	
 
-		<div class="col s12 m8 l9">
-		<div id="destination">
-				<h4>This is place holder text</h4>
-		</div>
-			<div class="row">
-				<form class="col s12">
-					<div class="row">
-						<div class="input-field col s12">
-							<input id="seeDo" type="text">
-         					<label for="activity">A place to SEE or something to DO</label>
-	         				<button id="seeDoBtn" class="waves-effect waves-light btn" type="submit"><i class="material-icons left">mode_edit</i>Add to my Fun Things to Do and See</button>
-						</div>
-
-						<div class="input-field col s12">
-							<input id="eatDrink" type="text">
-         					<label for="activity">A place to EAT or DRINK</label>
-	         				<button id="eatDrinkBtn" class="waves-effect waves-light btn" type="submit"><i class="material-icons left">mode_edit</i>Add To my Places to Eat & Drink</button>
-						</div>
-
-						<div class="input-field col s12">
-							<input id="sleep" type="text">
-         					<label for="activity"> A place I would like to STAY THE NIGHT</label>
-	         				<button id="sleepBtn" class="waves-effect waves-light btn" type="submit"><i class="material-icons left">mode_edit</i>Add to my Places to Sleep</button>
-						</div>
-
-						<button id="seeDo2" type="submit">Send list to DataBase updating 3 arrays</button>
-							
-					</div>
-				</form>		
-			</div>
-					
 						  
 			
 			
-			<!-- THIS WILL GO ON THE RESULTS PAGE -->	
-			<!-- <div class="row">
-				<table>
-			        <thead>
-			          <tr>
-			              <th data-field="thingsToDo">Things To Do</th>
-			              <th data-field="PlacesToEatDrink">Places to Eat n' Drink</th>
-			          </tr>
-			        </thead>
-			    </table>
-				
-			</div> -->
-
-	</div>
+	
 
 
-</div>
 
-    </div><!-- End of map2 -->
+
+
+
+
+
+<div id="page2">
+
+		<!-- side card -->
+	   <div id="sidediv" class="row">
+        <div class="col s6">
+        <form id="form2" class="col s12">
+        	<div class="row">
+	        	<div>
+	        		My (day trip) to (destination) includes
+	        	</div>
+        	</div>
+        	<br>
+        	<div class="row">
+        		<div class="input-field col s6">
+		          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+		          <label for="first_name">Things to do or see</label>
+		          <button class="btn waves-effect waves-light" type="submit" name="action">Add to List
+    				<i class="material-icons right">send</i>
+  				   </button>
+		         </div>     
+        	</div>
+        	<br>
+        	<div class="row">
+        		<div class="input-field col s6">
+		          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+		          <label for="first_name">Places to eat and drink</label>
+		          <button class="btn waves-effect waves-light" type="submit" name="action">Add to List
+    				<i class="material-icons right">send</i>
+  				   </button>
+		         </div> 
+        	</div>
+        	<br>
+        	<div class="row">
+        		<div class="input-field col s12">
+		          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+		          <label for="first_name">Places to sleep</label>
+		          <button class="btn waves-effect waves-light" type="submit" name="action">Add to List
+    				<i class="material-icons right">send</i>
+  				   </button>
+		         </div> 
+        	</div>
+        	<br>
+        	<div class="row">
+        		<div class="input-field col s6">
+		          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+		          <label for="first_name">Contact?</label>
+		          <button class="btn waves-effect waves-light" type="submit" name="action">Add to List
+    				<i class="material-icons right">send</i>
+  				   </button>
+		         </div> 
+        	</div>
+        	<div class="row">
+        		<div class="input-field col s6">
+		          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+		          <label for="first_name">NOTES</label>
+		          <button class="btn waves-effect waves-light" type="submit" name="action">Add to List
+    				<i class="material-icons right">send</i>
+  				   </button>
+		         </div> 
+        	</div>
+
+        <button id="donebtn" class="btn waves-effect waves-light" type="submit" name="action">Done for Now
+		<i class="material-icons right">send</i>
+		</button>
+
+        </form>
+        	
+        </div>
+
+       
+		
+
+
+
+
  
- 	<div id="map" style="border:0;">
-    </div><!-- End of map -->
+ 		<div id="map" style="border:0;" class="col s6">
+    	</div><!-- End of id map3 -->
+    
+    	
+ </div>
 
-    <div id = "newMap">
-    </div><!-- end of newMap -->
-   
+<div id="page3" class="container">
+
+		<!-- side card -->
+	   <div id="sidediv" class="row">
+        <div class="col s3">
+        	<div class="row">
+        		<div id="dayTrip">
+        			Day Trips
+        		</div>
+        		
+        	</div>
+        	<div class="row">
+        		<div id="weekend">
+        			Weekend Get-a-Ways
+        		</div>
+        		
+        	</div>
+        	<div class="row">
+        		<div id="week">
+        			Week Trips
+        		</div>
+        		
+        	</div>
+      
+        </div>
+      
+        	
+        </div>
+
+       
+		
+
+
+
+
+ 
+ 		<div id="map" style="border:0;" class="col s6">
+    	</div><!-- End of id map3 -->
+    
+    			
+ </div>
+
+ 
+ <div id="page4" class="container">
+
+		<!-- side card -->
+	   <div id="sidediv" class="row">
+        <div class="col s3">
+        	<div class="row">
+        		<div>
+        			<a class="waves-effect waves-light btn">See/Do</a>
+        			<a class="waves-effect waves-light btn">Eat/Drink</a>
+        			<a class="waves-effect waves-light btn">Stay</a>
+        		</div>
+        		<div id="toDoArray">
+        			
+        		</div>
+        		<div id="eatDrinkArray">
+        			
+        		</div>
+        		<div id="stayArray">
+        			
+        		</div>
+        		
+        	</div>
+        
+      
+        </div>
+      
+        	
+        </div>
+
+       
+		
+
+
+
+  
+ 
+ 		<div id="map" style="border:0;" class="col s9">
+    	</div><!-- End of id map3 -->
+    
+    	
+ </div>
+  
+  
+
 
 
 

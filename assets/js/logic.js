@@ -7,34 +7,48 @@ var newTrip = (function() {
 
   });
 
-  $("#page2").hide();
-  $("#page1btn2").click(function(){
-    $("#page1").hide();
-    $("#page2").show();
+
+	$("#page2").hide();
+	$("#page3").hide();
+	$("#page4").hide();
+	$("#page1btn").click(function(){
+		hideAll();
+		$("#page2").show();
+		
+	});
+
+	$("#donebtn").click(function(event){
+		event.preventDefault();
+		hideAll();
+		$("#page3").show();
+		// return false;
+
 
   });
 
-  $("#page2").hide();
-  $("#page1btn3").click(function(){
-    $("#page1").hide();
-    $("#page2").show();
 
-  });
+	function hideAll(){
+		$('#page1').hide();
+		$('#page2').hide();
+		$('#page3').hide();
+		$('#page4').hide();
+	};
 
-  
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyCJc9HSfoAU52BKbniU98Tb4JaiYPCvxkI",
-      authDomain: "tripmaker-adbb4.firebaseapp.com",
-      databaseURL: "https://tripmaker-adbb4.firebaseio.com",
-      storageBucket: "",
-      messagingSenderId: "9591901571"
-    };
 
-    firebase.initializeApp(config);
+
+	// alert("working!");
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyCJc9HSfoAU52BKbniU98Tb4JaiYPCvxkI",
+	    authDomain: "tripmaker-adbb4.firebaseapp.com",
+	    databaseURL: "https://tripmaker-adbb4.firebaseio.com",
+	    storageBucket: "",
+	    messagingSenderId: "9591901571"
+	  };
 
   var database = firebase.database();
   var trips = database.ref("trips")
+
 
   // ===on click function to grab the value from the input====
   $("#page1btn").on("click", function(){
@@ -48,6 +62,15 @@ var newTrip = (function() {
     console.log($type);
     
 
+
+//click button that Miguel changed to read radio buttons
+	// ===Need to either make an on click function to grab the value from the input, or make a button====
+	/*$("#page1btn").on("click", function(){
+		var tripType = $('input[name="group1"]:checked').val();
+		var userPlace = $('#destination').val().trim();
+		newTrip.$type = tripType;
+		newTrip.$place =  userPlace;
+		newTrip.start_trip();
 
   });/*End of DAY on click funtion*/
 
@@ -349,6 +372,7 @@ window.map = printMap;
 // 		newTrip.$type = tripType;
 // 		newTrip.$place =  userPlace;
 // 		newTrip.start_trip();
+
 		
 // 		console.log(newTrip.$place);
 // 		console.log(newTrip.$type);
@@ -357,6 +381,7 @@ window.map = printMap;
 
 //  	});/*End of DAY on click funtion*/
 
+
 // 	$("#page1btn2").on("click", function(){
 // 		var tripType = $('#page1btn2').val().trim();
 // 		var userPlace = $('#icon_prefix2').val().trim();
@@ -364,17 +389,13 @@ window.map = printMap;
 // 		newTrip.$place =  userPlace;
 // 		newTrip.start_trip();
 
-// 		console.log(newTrip.$place);
-// 		console.log(newTrip.$type);
-
-//  	});/*End of WEEKEND on click funtion*/
-
 // 	$("#page1btn3").on("click", function(){
 // 		var tripType = $('#page1btn3').val().trim();
 // 		var userPlace = $('#icon_prefix2').val().trim();
 // 		newTrip.$type = tripType;
 // 		newTrip.$place =  userPlace;
 // 		newTrip.start_trip();
+
 
 // 		console.log(newTrip.$place);
 // 		console.log(newTrip.$type);
