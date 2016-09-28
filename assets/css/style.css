@@ -32,6 +32,8 @@ html,body {
 
 }
 
-#sidediv {
-	margin-right: 400px;
+#map {
+	height: 1200px;
+	width: 600px;
+
 }
