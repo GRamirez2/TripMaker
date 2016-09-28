@@ -31,8 +31,8 @@ html,body {
 
 #newMap{
 
-	width: 80%;
-	height: 500px;
+	width: 50%;
+	height: 600px;
 }
 
 
@@ -46,6 +46,10 @@ html,body {
 	height: 1200px;
 	width: 600px;
 
+}
+
+#donebtn {
+	float: right;
 }
 
 
