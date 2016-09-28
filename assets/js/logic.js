@@ -17,14 +17,14 @@ var newTrip = (function() {
 		
 	});
 
-	$("#donebtn").click(function(event){
-		event.preventDefault();
-		hideAll();
-		$("#page3").show();
-		// return false;
+	// $("#donebtn").click(function(event){
+	// 	event.preventDefault();
+	// 	hideAll();
+	// 	$("#page3").show();
+	// 	// return false;
 
 
-  });
+ //  });
 
 
 	function hideAll(){
@@ -140,8 +140,11 @@ var newTrip = (function() {
 
 
 	// This is test button to check my update to the database, but a reminder we need a SAVE button
-	$("#seeDo2").on("click", function(){
+	$("#donebtn").on("click", function(event){
 	    addTo();
+	    event.preventDefault();
+		hideAll();
+		$("#page3").show();
 
 	});/* END of TEST seedo2 button */
 
