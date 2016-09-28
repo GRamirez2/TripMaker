@@ -57,14 +57,14 @@
 					
           <ul id="nav-mobile1" class="right hide-on-med-and-down trBtn">
 
-						<button class="btn waves-effect waves-light" type="submit" name="action">Create New Trip
+						<button id="createBtn" class="btn waves-effect waves-light" type="submit" name="action">Create New Trip
   				  </button>
 
 					</ul>
 					
 					<ul id="nav-mobile2" class="right hide-on-med-and-down tlBtn">
 
-						<button class="btn waves-effect waves-light" type="submit" name="action">See My Trips
+						<button id="seeTripbtn" class="btn waves-effect waves-light" type="submit" name="action">See My Trips
   				  </button>
 
 					</ul>
@@ -234,44 +234,56 @@
 </div><!-- ==========================     END of page2   =============================================== -->
 
 
-<div id="page3" class="container"><!-- =================   PAGE 3    ================================ -->
+<div id="page3" ><!-- =================   PAGE 3    ================================ -->
 
-		<!-- side card -->
-  	<div id="sidediv" class="row">
+		<!-- List of Day Trips -->
 
-              <div class="col s3">
+      <div 	class="row">
+        <div class="col s4 m4 l4">
+          <div  class="card-panel teal lighten-2">
+            <div class="card-content white-text">
+              <span class="card-title"><h1>Day Trips</h1>     </span>
+              
+            </div>
+            <div id="dayList" class="card-action">
+             
+            </div>
+          </div>
+        </div>
 
-                	<div class="row">
 
-                  		<div id="dayTrip">
-                  			Day Trips
-                  		</div>
-                
-                	</div>
+		<!-- List of Weekend Trips -->
 
-                	<div class="row">
+     <div 	class="row">
+        <div class="col s4 m4 l4">
+          <div  class="card-panel teal lighten-2">
+            <div class="card-content white-text">
+              <span class="card-title"><h1>Weekend Trips</h1>     </span>
+              
+            </div>
+            <div id="weekEndList" class="card-action">
+             
+            </div>
+          </div>
+        </div>
+        	<!-- List of Week Trips -->
 
-                  		<div id="weekend">
-                  			Weekend Get-a-Ways
-                  		</div>
-                		
-                	</div>
+	<div class="row">
+        <div class="col s4 m4 l4">
+          <div  class="card-panel teal lighten-2">
+            <div class="card-content white-text">
+              <span class="card-title"><h1>Week Trips</h1>     </span>
+              
+            </div>
+            <div id="weekList" class="card-action">
+           
+            </div>
+          </div>
+        </div>
 
-                	<div class="row">
-                		
-                    <div id="week">
-                			Week Trips
-                		</div>
-                		
-                	</div>
-            
-              </div>
-
-    </div>
 
    
-   	<div id="newMap" style="border:0;" class="col s6">
-    </div><!-- End of id map3 -->
+ 
     
     			
 </div> <!-- ===================================  END OF PAGE 3 ================================-->
