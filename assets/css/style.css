@@ -9,10 +9,11 @@
 }
 
 #page1 {
-	background: url("HD-Beach-Wallpaper-8.jpg");
+	background: url("1HD-Beach-Wallpaper-8.jpg");
 	background-size: cover;
 	height: 100%;
 	width: 100%;
+	
 
 }
 
@@ -51,3 +52,7 @@ html,body {
 	width: 600px;
 
 }
+
+
+
+

@@ -36,7 +36,7 @@ var newTrip = (function() {
 
 
 
-	// alert("working!");
+	
 	  // Initialize Firebase
 	  var config = {
 	    apiKey: "AIzaSyCJc9HSfoAU52BKbniU98Tb4JaiYPCvxkI",
@@ -45,6 +45,7 @@ var newTrip = (function() {
 	    storageBucket: "",
 	    messagingSenderId: "9591901571"
 	  };
+	  firebase.initializeApp(config);
 
   var database = firebase.database();
   var trips = database.ref("trips")
@@ -52,14 +53,19 @@ var newTrip = (function() {
 
   // ===on click function to grab the value from the input====
   $("#page1btn").on("click", function(){
-    var tripType = $('#page1btn').val().trim();
-    var userPlace = $('#icon_prefix2').val().trim();
+    
+    var tripType = $('#day').val().trim();/*fix this*/
+
+    var userPlace = $('#placeInput').val().trim();
     $type = tripType;
     $place =  userPlace;
     start_trip();
     
     console.log($place);
     console.log($type);
+
+	});
+    
     
 
 
@@ -101,59 +107,59 @@ var newTrip = (function() {
   });/*End of WEEK on click funtion*/
 
 
-// Click listener to seeDo value to add to an array
-$("#seeDoBtn").on("click", function(){
-    if ($('#seeDo').val().length == 0) {
-      alert('I think you pressed the wrong button, your PLACES TO SEE & DO field is empty');
+	// Click listener to seeDo value to add to an array
+	$("#seeDoBtn").on("click", function(){
+	    if ($('#seeDo').val().length == 0) {
+	      alert('I think you pressed the wrong button, your PLACES TO SEE & DO field is empty');
 
-	}else {var seeDo = $("#seeDo").val().trim();
-		    $seeDo.push(seeDo);
-		    console.log($seeDo);
-		};
-
-    $('#seeDo').val("");
-    return false;
-
-});/* END of seeDoBtn button */
-
-// Click listener to eatDrink value to add to an array
-$("#eatDrinkBtn").on("click", function(){
-    if ($('#eatDrink').val().length == 0) {
-      alert('I think you pressed the wrong button, your Eat/Drink field is empty');
-
-	}else {var eatDrink = $("#eatDrink").val().trim();
-    		$eatDrink.push(eatDrink);
-    		console.log($eatDrink);
+		}else {var seeDo = $("#seeDo").val().trim();
+			    $seeDo.push(seeDo);
+			    console.log($seeDo);
 			};
 
-    $('#eatDrink').val("");
-    return false;
+	    $('#seeDo').val("");
+	    return false;
 
-});/* END of eatDrink button */
+	});/* END of seeDoBtn button */
 
-// Click listener to Sleep value to add to an array
-$("#sleepBtn").on("click", function(){
-    
-if ($('#sleep').val().length == 0) {
-      alert('I think you pressed the wrong button, your PLACES TO SLEEP field is empty');
+	// Click listener to eatDrink value to add to an array
+	$("#eatDrinkBtn").on("click", function(){
+	    if ($('#eatDrink').val().length == 0) {
+	      alert('I think you pressed the wrong button, your Eat/Drink field is empty');
 
-	}else{var sleep = $("#sleep").val().trim();
-		    $sleep.push(sleep);
-		    console.log($sleep);
-			};
+		}else {var eatDrink = $("#eatDrink").val().trim();
+	    		$eatDrink.push(eatDrink);
+	    		console.log($eatDrink);
+				};
 
-    $('#sleep').val("");
-    return false;
+	    $('#eatDrink').val("");
+	    return false;
 
-});/* END of sleep button */
+	});/* END of eatDrink button */
+
+	// Click listener to Sleep value to add to an array
+	$("#sleepBtn").on("click", function(){
+	    
+	if ($('#sleep').val().length == 0) {
+	      alert('I think you pressed the wrong button, your PLACES TO SLEEP field is empty');
+
+		}else{var sleep = $("#sleep").val().trim();
+			    $sleep.push(sleep);
+			    console.log($sleep);
+				};
+
+	    $('#sleep').val("");
+	    return false;
+
+	});/* END of sleep button */
 
 
 
-// This is test button to check my update to the database, but a reminder we need a SAVE button
-$("#seeDo2").on("click", function(){
-    addTo();
+	// This is test button to check my update to the database, but a reminder we need a SAVE button
+	$("#seeDo2").on("click", function(){
+	    addTo();
 
-});/* END of TEST seedo2 button */
+	});/* END of TEST seedo2 button */
 
 
 
@@ -208,7 +214,7 @@ $("#seeDo2").on("click", function(){
 
           
           
-  }
+  }/*End of start_trip function*/
 
 
   function printMap() {
@@ -298,79 +304,79 @@ $("#seeDo2").on("click", function(){
 
   };/*End of empty function*/
 
-var destination = [];
-var idKey = [];
-var type = [];
+		var destination = [];
+		var idKey = [];
+		var type = [];
 
-database.ref("trips").on("value", function(snapshot) {
-    snapshot.forEach(function(childSnapshot) {
+		database.ref("trips").on("value", function(snapshot) {
+		    snapshot.forEach(function(childSnapshot) {
 
-    	var key = childSnapshot.key;
-    	var childData = childSnapshot.val();
-    	idKey.push(key);
-    	destination.push(childData.place);
-    	type.push(childData.type);
-    // 	console.log(snapshot.val());
-    // 	console.log(snapshot);
-    //     console.log(key);
-  		// console.log(childData.place);
-  		// console.log(childData.type);
-  		createButtons();
-  	});
-});
+		    	var key = childSnapshot.key;
+		    	var childData = childSnapshot.val();
+		    	idKey.push(key);
+		    	destination.push(childData.place);
+		    	type.push(childData.type);
+		    // 	console.log(snapshot.val());
+		    // 	console.log(snapshot);
+		    //     console.log(key);
+		  		// console.log(childData.place);
+		  		// console.log(childData.type);
+		  		createButtons();
+		  	});
+		});
 
-function createButtons(){
+		function createButtons(){
 
-	$('.dayTrips').empty();
-	$('.weekendTrips').empty();
-	$('.weekTrips').empty();
+			$('.dayTrips').empty();
+			$('.weekendTrips').empty();
+			$('.weekTrips').empty();
 
 
-	for (var i = 0; i < destination.length; i++) {
+			for (var i = 0; i < destination.length; i++) {
 
-		var button = $('<button>')
-		button.addClass('buttons');
-		button.text(destination[i]);
-		button.attr({'id': idKey[i], 'data-destination': destination[i], 'data-type': type[i]});
-// console.log(button.data('type'))
-		if (button.data('type') == 'Day Trip') {
+				var button = $('<button>')
+				button.addClass('buttons');
+				button.text(destination[i]);
+				button.attr({'id': idKey[i], 'data-destination': destination[i], 'data-type': type[i]});
+		// console.log(button.data('type'))
+				if (button.data('type') == 'Day Trip') {
 
-			$('.dayTrips').append(button);
+					$('.dayTrips').append(button);
 
-		} else if (button.data('type') == 'Weekend Trip') {
+				} else if (button.data('type') == 'Weekend Trip') {
 
-			$('.weekendTrips').append(button);
+					$('.weekendTrips').append(button);
 
-		} else if (button.data('type') == 'Week Trip') {
+				} else if (button.data('type') == 'Week Trip') {
 
-			$('.weekTrips').append(button);
+					$('.weekTrips').append(button);
+
+				}
+
+			}
 
 		}
 
-	}
-
-}
 
 
+		  
 
-  
+		// =======pulling data from the database===============
 
-// =======pulling data from the database===============
+		trips.on("value", function(snapshot) {
 
-trips.on("value", function(snapshot) {
+			// var seeS = snapshot.val().key.see; 
 
-	// var seeS = snapshot.val().key.see; 
-
-	// Print the initial data to the console.
-	// console.log(snapshot.val()[key].city);
-	console.log(snapshot.val());
-	console.log(snapshot.exportVal());
-	// console.log(JSON.stringify(seeS));
-	// console.log(snapshot.val().austin.sleep);
-	// console.log(snapshot.val().austin.sleep.length);
-	// console.log(snapshot.val().austin.city);
-	// console.log(snapshot.val().houston.city);
-});
+			// Print the initial data to the console.
+			// console.log(snapshot.val()[key].city);
+			console.log(snapshot.val());
+			console.log(snapshot.exportVal());
+			// console.log(JSON.stringify(seeS));
+			// console.log(snapshot.val().austin.sleep);
+			// console.log(snapshot.val().austin.sleep.length);
+			// console.log(snapshot.val().austin.city);
+			// console.log(snapshot.val().houston.city);
+		});
 
 // trips.limitToLast(1).on("value", function(snapshot) {
 // 	console.log(snapshot.name());
@@ -378,7 +384,8 @@ trips.on("value", function(snapshot) {
 
 
 
-window.map = printMap;
+	window.map = printMap;
+
 })();
 
 
