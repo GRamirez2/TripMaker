@@ -173,14 +173,9 @@ var newTrip = (function() {
 
 	//=========== BEGINING OF click function for TRIPS button =========================//
 
-		$(document).on("click", ".buttons", function(){
-			hideAll();	
-			$("#page4").show();
-		})
-		/* THIS LISTENER SHOULD call the FUCTION showData that will print the arrays to screen*/
+		$(document).on("click", ".buttons", showData);
+		
 
-
-		  
 
 	// =============== END of TRIPS button click function ===========================
 
@@ -390,29 +385,39 @@ var newTrip = (function() {
 	}/*========== end of createButton function ===============*/
 
 	//=============== Begining of showData function, PAGE 4===================
-	function showData (){			
+	function showData (){	
 
-			/*Get KEY from data attribute and then run the call, then print to screen. */
+		hideAll();	
+		$("#page4").show();
+				
 
-				database.ref("trips/" + requestekey).once("value", function(snapshot) {
-					   	snapshot.forEach(function(childSnapshot) {
+			var key = $(this).attr('id');
+			console.log(key);
 
-					       var array = snapshot.val().to_do;
-					       var key = childSnapshot.key;
-					       var childData = childSnapshot.val();
-					       idKey.push(key);
-					       destination.push(childData.place);
-					       type.push(childData.type);
-					       console.log(JSON.stringify(array));
-					       console.log(snapshot.val().to_do);
-					       console.log(snapshot);
-					   	//     console.log(key);
-					         // console.log(childData.place);
-					         // console.log(childData.type);
-					         createButtons();
+
+				database.ref("trips/" + key).on("value", function(snapshot) {
+					   		       
+							console.log(snapshot.val()); /*a reference of everything*/
+
+							console.log(snapshot.val().key);
+							console.log(snapshot.val().lat);
+							console.log(snapshot.val().lng);
+							console.log(snapshot.val().place);
+							console.log(snapshot.val().type);
+
+					       	var array = snapshot.val().to_do;
+					       	console.log(JSON.stringify(array));/*make a clean array*/
+
+					       	console.log(snapshot.val().to_do);/*can loop through this format and print?*/
+					       	console.log(snapshot.val().to_eat);
+					       	console.log(snapshot.val().to_sleep);
+
+
+					       	
+					   		
+					        
 					 	});
-					});
-
+					
 		};/*end of showData*/
 
    	//=============== END of showData function, PAGE 4===================
