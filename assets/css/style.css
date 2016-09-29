@@ -67,7 +67,17 @@ html,body {
 	
 }
 
+#doSee {
+	height: 1000px;
+}
 
+#eatList {
+	height: 1000px;
+}
+
+#placesSleep {
+	height: 1000px;
+}
 
 
 
