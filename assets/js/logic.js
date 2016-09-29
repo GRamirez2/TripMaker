@@ -4,12 +4,8 @@ var newTrip = (function() {
 
 	
 	firstHide()
-	$("#page1btn").click(function(){
-		hideAll();
-		$("#page2").show();
 
-		
-	});
+	
 
 	 $("#seeTripbtn").click(function(event){
 		event.preventDefault();
@@ -72,17 +68,31 @@ var newTrip = (function() {
 
   // ===on click function to grab the value from the input====
   $("#page1btn").on("click", function(){
-    
-    var userPlace = $('#destination').val().trim();
-    var tripType = $("input[name=tripType]:checked").val();/*fix this*/
-    $type = tripType;
-    $place =  userPlace;
-    start_trip();
-    
-    console.log($place);
-    console.log($type);
 
-	});/*End of DAY on click function*/
+  		if ($('#destination').val().length == 0) {
+
+	      alert("Whoops - you forgot to indicate a destination for your trip");
+
+		}else {var userPlace = $('#destination').val().trim();
+    			var tripType = $("input[name=tripType]:checked").val();
+    				$place =  userPlace;
+    				$type = tripType;
+
+				    start_trip();
+				    hideAll();
+
+					$("#page2").show();
+
+				    console.log($place);
+				    console.log($type);
+				 };
+
+				$("#destination").val("");
+				
+		return false;
+
+	});/*============ End of START TRIP on click function =======================*/
+
   //   //===================THESE FUNCTIONS CAN BE DELETED================== 
 
   // $("#page1btn2").on("click", function(){
@@ -158,7 +168,7 @@ var newTrip = (function() {
 
 
 
-	// This is test button to check my update to the database, but a reminder we need a SAVE button
+	// This SAVE MY LIST btn click sends data to the server
 	$("#donebtn").on("click", function(event){
 	    addTo();
 	    event.preventDefault();
@@ -166,7 +176,7 @@ var newTrip = (function() {
 		$("#page3").show();
 		getData();
 
-	});/* END of TEST seedo2 button */
+	});/* END of SAVE MY LIST on click */
 
 
 
@@ -238,9 +248,9 @@ var newTrip = (function() {
 
         place: $place,
         type: $type,
-        see_do: $seeDo,
-        eat_drink: $eatDrink,
-        sleep: $sleep,
+        to_do: $seeDo,
+        to_eat: $eatDrink,
+        to_sleep: $sleep,
         notes: $notes,
         lat: $lat,
         lng: $lng,
@@ -254,12 +264,12 @@ var newTrip = (function() {
     var newData = {};
 	newData['/trips/'+$key]= {
 								
-								    key: $key,
-								    place: $place,
+								key: $key,
+								place: $place,
 						        type: $type,
-						        see_do: $seeDo,
-						        eat_drink: $eatDrink,
-						        sleep: $sleep,
+						        to_do: $seeDo,
+						        to_eat: $eatDrink,
+						        to_sleep: $sleep,
 						        notes: $notes,
 						        lat: $lat,
 						        lng: $lng,
@@ -310,62 +320,63 @@ var newTrip = (function() {
 
   };/*End of empty function*/
 
-		var destination = [];
-		var idKey = [];
-		var type = [];
+	var destination = [];
+	var idKey = [];
+	var type = [];
 
-		function getData() {
-			database.ref("trips").once("value", function(snapshot) {
-		    snapshot.forEach(function(childSnapshot) {
+	/*========= BEGINING of getData function ============*/
+	function getData() {
+		database.ref("trips").once("value", function(snapshot) {
+	    snapshot.forEach(function(childSnapshot) {
 
-		    	var key = childSnapshot.key;
-		    	var childData = childSnapshot.val();
-		    	idKey.push(key);
-		    	destination.push(childData.place);
-		    	type.push(childData.type);
-		    // 	console.log(snapshot.val());
-		    // 	console.log(snapshot);
-		    //     console.log(key);
-		  		// console.log(childData.place);
-		  		// console.log(childData.type);
-		  		createButtons();
-		  		});
-			});
-		}
-
-		function createButtons(){
-
-			$('#dayList').empty();
-			$('#weekEndList').empty();
-			$('#weekList').empty();
+	    	var key = childSnapshot.key;
+	    	var childData = childSnapshot.val();
+	    	idKey.push(key);
+	    	destination.push(childData.place);
+	    	type.push(childData.type);
+	    // 	console.log(snapshot.val());
+	    // 	console.log(snapshot);
+	    //     console.log(key);
+	  		// console.log(childData.place);
+	  		// console.log(childData.type);
+	  		createButtons();
+	  		});
+		});
+	}/*========= END of getData function ======================*/
 
 
-			for (var i = 0; i < destination.length; i++) {
+	/*=========== BEGINING of createButtons funtions ==============*/
+	function createButtons(){
 
-				var button = $('<button>')
-				button.addClass('buttons');
-				button.text(destination[i]);
-				button.attr({'id': idKey[i], 'data-destination': destination[i], 'data-type': type[i]});
-		// console.log(button.data('type'))
-				if (button.data('type') == 'day') {
+		$('#dayList').empty();
+		$('#weekEndList').empty();
+		$('#weekList').empty();
 
-					$('#dayList').append(button);
 
-				} else if (button.data('type') == 'weekend') {
+		for (var i = 0; i < destination.length; i++) {
 
-					$('#weekEndList').append(button);
+			var button = $('<button>')
+			button.addClass('buttons');
+			button.text(destination[i]);
+			button.attr({'id': idKey[i], 'data-destination': destination[i], 'data-type': type[i]});
+			// console.log(button.data('type'))
+			if (button.data('type') == 'day') {
 
-				} else if (button.data('type') == 'week') {
+				$('#dayList').append(button);
 
-					$('#weekList').append(button);
+			} else if (button.data('type') == 'weekend') {
 
-				}
-			
+				$('#weekEndList').append(button);
+
+			} else if (button.data('type') == 'week') {
+
+				$('#weekList').append(button);
 
 			}
+		
+		}
 
-				
-		} //=====end of create button =====//
+	}/*========== end of createButton function ===============*/
 
 		//===========beginning of button click==//
 
