@@ -360,17 +360,19 @@ var newTrip = (function() {
 					$('#weekList').append(button);
 
 				}
-				$(button).on("click",function(event){
-				event.preventDefault();
-			 	hideAll();
-			 	$("#page4").show();
-
-			 	});
+			
 
 			}
 
 				
-		}
+		} //=====end of create button =====//
+
+		//===========beginning of button click==//
+
+		$(document).on("click", ".buttons", function(){
+			hideAll();	
+			$("#page4").show();
+		})
 
 
 
