@@ -171,6 +171,19 @@ var newTrip = (function() {
 
 	});/* ================ END of SAVE MY LIST on click =============== */
 
+	//=========== BEGINING OF click function for TRIPS button =========================//
+
+		$(document).on("click", ".buttons", function(){
+			hideAll();	
+			$("#page4").show();
+		})
+		/* THIS LISTENER SHOULD call the FUCTION seeData that will print the arrays to screen*/
+
+
+		  
+
+	// =============== END of TRIPS button click function ===========================
+
 
 
 
@@ -319,6 +332,11 @@ var newTrip = (function() {
 
 	/*========= BEGINING of getData function ============*/
 	function getData() {
+
+		destination = [];
+		idKey = [];
+		type = [];
+
 		database.ref("trips").once("value", function(snapshot) {
 	    snapshot.forEach(function(childSnapshot) {
 
@@ -371,19 +389,8 @@ var newTrip = (function() {
 
 	}/*========== end of createButton function ===============*/
 
-		//===========beginning of button click==//
-
-		$(document).on("click", ".buttons", function(){
-			hideAll();	
-			$("#page4").show();
-		})
-
-
-
-		  
-
-		// =======pulling data from the database===============
-
+		
+	// ===========Get data from the firebase =================
 		trips.on("value", function(snapshot) {
 
 			// var seeS = snapshot.val().key.see; 
