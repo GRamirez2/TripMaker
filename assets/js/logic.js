@@ -5,41 +5,35 @@ var newTrip = (function() {
 	
 	firstHide()
 
-	
+	function firstHide(){
+  		$("#page2").hide();
+		$("#page3").hide();
+		$("#page4").hide();
+  	};
 
-	 $("#seeTripbtn").click(function(event){
+	
+ 	$("#seeTripbtn").click(function(event){
 		event.preventDefault();
 	 	hideAll();
 	 	$("#page3").show();
 		getData();
 
+   	});
 
-
-   });
-
- $("#createBtn").click(function(event){
+ 	$("#createBtn").click(function(event){
 		event.preventDefault();
 	 	hideAll();
 	 	$("#page1").show();
 	 	
+   	});
 
-
-   });
-
-  $("#logo").click(function(event){
+  	$("#logo").click(function(event){
 		event.preventDefault();
 	 	hideAll();
 	 	$("#page1").show();
 	 	
+   	});
 
-
-   });
-
-  	function firstHide(){
-  		$("#page2").hide();
-		$("#page3").hide();
-		$("#page4").hide();
-  	};
 
 	function hideAll(){
 		$('#page1').hide();
@@ -66,8 +60,11 @@ var newTrip = (function() {
   var trips = database.ref("trips")
 
 
-  // ===on click function to grab the value from the input====
-  $("#page1btn").on("click", function(){
+  // ==========on click function to grab the value from the input=================
+
+  $("#page1btn").on("click", function(event){
+
+  		event.preventDefault();
 
   		if ($('#destination').val().length == 0) {
 
@@ -88,40 +85,18 @@ var newTrip = (function() {
 				 };
 
 				$("#destination").val("");
-				
-		return false;
+
 
 	});/*============ End of START TRIP on click function =======================*/
 
-  //   //===================THESE FUNCTIONS CAN BE DELETED================== 
 
-  // $("#page1btn2").on("click", function(){
-  //   var tripType = $('#page1btn2').val().trim();
-  //   var userPlace = $('#icon_prefix2').val().trim();
-  //   $type = tripType;
-  //   $place =  userPlace;
-  //   start_trip();
 
-  //   console.log($place);
-  //   console.log($type);
+	// ===============Click listener to seeDo value to add to an array
 
-  // });/*End of WEEKEND on click funtion*/
+	$("#seeDoBtn").on("click", function(event){
 
-  // $("#page1btn3").on("click", function(){
-  //   var tripType = $('#page1btn3').val().trim();
-  //   var userPlace = $('#icon_prefix2').val().trim();
-  //   $type = tripType;
-  //   $place =  userPlace;
-  //   start_trip();
-   
-  //   console.log($place);
-  //   console.log($type);
+		event.preventDefault();
 
-  // });/*End of WEEK on click funtion*/
-  // ===================END OF BUTTONS THAT CAN BE DELETED ===============
-
-	// Click listener to seeDo value to add to an array
-	$("#seeDoBtn").on("click", function(){
 	    if ($('#seeDo').val().length == 0) {
 	      alert('I think you pressed the wrong button, your PLACES TO SEE & DO field is empty');
 
@@ -131,12 +106,15 @@ var newTrip = (function() {
 			};
 
 	    $('#seeDo').val("");
-	    return false;
 
-	});/* END of seeDoBtn button */
+	});/* ================END of seeDoBtn button */
 
-	// Click listener to eatDrink value to add to an array
-	$("#eatDrinkBtn").on("click", function(){
+
+	// ===============Click listener to eatDrink value to add to an array
+	$("#eatDrinkBtn").on("click", function(event){
+
+		event.preventDefault();
+
 	    if ($('#eatDrink').val().length == 0) {
 	      alert('I think you pressed the wrong button, your Eat/Drink field is empty');
 
@@ -146,14 +124,17 @@ var newTrip = (function() {
 				};
 
 	    $('#eatDrink').val("");
-	    return false;
-
-	});/* END of eatDrink button */
-
-	// Click listener to Sleep value to add to an array
-	$("#sleepBtn").on("click", function(){
 	    
-	if ($('#sleep').val().length == 0) {
+
+	});/* ================== END of eatDrink button */
+
+
+	// ================== Click listener to Sleep value to add to an array
+	$("#sleepBtn").on("click", function(event){
+
+		event.preventDefault();
+	    
+		if ($('#sleep').val().length == 0) {
 	      alert('I think you pressed the wrong button, your PLACES TO SLEEP field is empty');
 
 		}else{var sleep = $("#sleep").val().trim();
@@ -162,13 +143,13 @@ var newTrip = (function() {
 				};
 
 	    $('#sleep').val("");
-	    return false;
+	   
 
-	});/* END of sleep button */
+	});/* =================== END of sleep button ====================== */
 
 
 
-	// This SAVE MY LIST btn click sends data to the server
+	// ================== This SAVE MY LIST btn click sends data to the server ========
 	$("#donebtn").on("click", function(event){
 	    addTo();
 	    event.preventDefault();
@@ -176,7 +157,7 @@ var newTrip = (function() {
 		$("#page3").show();
 		getData();
 
-	});/* END of SAVE MY LIST on click */
+	});/* ================ END of SAVE MY LIST on click =============== */
 
 
 
