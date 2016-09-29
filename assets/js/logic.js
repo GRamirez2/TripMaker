@@ -21,7 +21,8 @@ var newTrip = (function() {
 		event.preventDefault();
 	 	hideAll();
 	 	$("#page3").show();
-	 	
+		getData();
+
 
 
    });
@@ -163,6 +164,7 @@ var newTrip = (function() {
 	    event.preventDefault();
 		hideAll();
 		$("#page3").show();
+		getData();
 
 	});/* END of TEST seedo2 button */
 
@@ -312,7 +314,8 @@ var newTrip = (function() {
 		var idKey = [];
 		var type = [];
 
-		database.ref("trips").on("value", function(snapshot) {
+		function getData() {
+			database.ref("trips").once("value", function(snapshot) {
 		    snapshot.forEach(function(childSnapshot) {
 
 		    	var key = childSnapshot.key;
@@ -326,14 +329,15 @@ var newTrip = (function() {
 		  		// console.log(childData.place);
 		  		// console.log(childData.type);
 		  		createButtons();
-		  	});
-		});
+		  		});
+			});
+		}
 
 		function createButtons(){
 
-			$('.dayTrips').empty();
-			$('.weekendTrips').empty();
-			$('.weekTrips').empty();
+			$('#dayList').empty();
+			$('#weekEndList').empty();
+			$('#weekList').empty();
 
 
 			for (var i = 0; i < destination.length; i++) {
@@ -343,17 +347,17 @@ var newTrip = (function() {
 				button.text(destination[i]);
 				button.attr({'id': idKey[i], 'data-destination': destination[i], 'data-type': type[i]});
 		// console.log(button.data('type'))
-				if (button.data('type') == 'Day Trip') {
+				if (button.data('type') == 'day') {
 
-					$('.dayTrips').append(button);
+					$('#dayList').append(button);
 
-				} else if (button.data('type') == 'Weekend Trip') {
+				} else if (button.data('type') == 'weekend') {
 
-					$('.weekendTrips').append(button);
+					$('#weekEndList').append(button);
 
-				} else if (button.data('type') == 'Week Trip') {
+				} else if (button.data('type') == 'week') {
 
-					$('.weekTrips').append(button);
+					$('#weekList').append(button);
 
 				}
 
