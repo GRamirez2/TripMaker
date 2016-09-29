@@ -389,6 +389,10 @@ var newTrip = (function() {
 
 		hideAll();	
 		$("#page4").show();
+
+		$('#doSee').empty();
+		$('#eatList').empty();
+		$('#placesSleep').empty();
 				
 
 			var key = $(this).attr('id');
@@ -436,30 +440,59 @@ var newTrip = (function() {
 					       	var toSleep = snapshot.val().to_sleep;
 
 					       		// Loop through to_do array
-					       		for (var i = 0; i < toDo.length; i++){
+					       		if(typeof toDo === 'undefined' || toDo === null ){
 
-					       			var dolist = "<tr><td>" + toDo[i] + "</tr></td>"
-					       			$("#doSee").append(dolist);
+					       			var emptylist = '<h5>' + 'This list is empty' + '</h5>'
+					       			$("#doSee").append(emptylist);
 					       			
-					       		};
-					       		// NEED TO EMPTY THIS DIV
 
-						       		// Loop through to_eat array
-						       		for (var i = 0; i < toEat.length; i++){
+					       				} else if (toDo.length > -1){
 
-						       			var eatlist = "<tr><td>" + toEat[i] + "</tr></td>"
-						       			$("#eatList").append(eatlist);
-						       			
-						       		};
-						       		// NEED TO EMPTY THIS DIV
+							       			for (var i = 0; i < toDo.length; i++){
 
-								       		// Loop through to_eat array
-							       		for (var i = 0; i < toSleep.length; i++){
-
-							       			var sleeplist = "<tr><td>" + toSleep[i] + "</tr></td>"
-							       			$("#placesSleep").append(sleeplist);
+							       			var dolist = "<tr><td>" + toDo[i] + "</tr></td>"
+							       			$("#doSee").append(dolist);
 							       			
-							       		};
+							       			};
+
+					       				}; /*End of else if for toDo.length*/
+
+					       		
+						       		// Loop through to_eat array
+						       		if(typeof toEat === 'undefined' || toEat === null ){
+
+						       			var emptylist = '<h5>' + 'This list is empty' + '</h5>'
+						       			$("#eatList").append(emptylist);
+					       			
+
+					       					} else if (toEat.length > -1){
+
+							       					for (var i = 0; i < toEat.length; i++){
+
+									       			var eatlist = "<tr><td>" + toEat[i] + "</tr></td>"
+									       			$("#eatList").append(eatlist);
+						       			
+						       						};
+						       				}; /*End of else if for toEat.lenth */
+
+
+								    	// Loop through to_eat array
+								    	if(typeof toSleep === 'undefined' || toSleep === null ){
+
+							       			var emptylist = '<h5>' + 'This list is empty' + '</h5>'
+							       			$("#placesSleep").append(emptylist);
+					       			
+
+					       						} else if (toSleep.length > -1){
+
+										       		for (var i = 0; i < toSleep.length; i++){
+
+										       			var sleeplist = "<tr><td>" + toSleep[i] + "</tr></td>"
+										       			$("#placesSleep").append(sleeplist);
+							       			
+							       					};
+							       			}; /*End of else if for toSleep.lenth */
+							       			
 							       		// NEED TO EMPTY THIS DIV
 
 					       		
