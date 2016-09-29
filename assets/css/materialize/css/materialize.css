@@ -8507,7 +8507,9 @@ padding-left: 0px;
 }
 
 #logo{
-  color: #9e9e9e;
+  color: #4eaaa4;
+  font-weight: bold;
+  font-style: italic;
 }
 
 /*#page1btn{

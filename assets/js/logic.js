@@ -177,7 +177,7 @@ var newTrip = (function() {
 			hideAll();	
 			$("#page4").show();
 		})
-		/* THIS LISTENER SHOULD call the FUCTION seeData that will print the arrays to screen*/
+		/* THIS LISTENER SHOULD call the FUCTION showData that will print the arrays to screen*/
 
 
 		  
@@ -388,6 +388,34 @@ var newTrip = (function() {
 		}
 
 	}/*========== end of createButton function ===============*/
+
+	//=============== Begining of showData function, PAGE 4===================
+	function showData (){			
+
+			/*Get KEY from data attribute and then run the call, then print to screen. */
+
+				database.ref("trips/" + requestekey).once("value", function(snapshot) {
+					   	snapshot.forEach(function(childSnapshot) {
+
+					       var array = snapshot.val().to_do;
+					       var key = childSnapshot.key;
+					       var childData = childSnapshot.val();
+					       idKey.push(key);
+					       destination.push(childData.place);
+					       type.push(childData.type);
+					       console.log(JSON.stringify(array));
+					       console.log(snapshot.val().to_do);
+					       console.log(snapshot);
+					   	//     console.log(key);
+					         // console.log(childData.place);
+					         // console.log(childData.type);
+					         createButtons();
+					 	});
+					});
+
+		};/*end of showData*/
+
+   	//=============== END of showData function, PAGE 4===================
 
 		
 	// ===========Get data from the firebase =================
