@@ -427,13 +427,13 @@ var newTrip = (function() {
 							console.log($type);
 
 					       	var toDo = snapshot.val().to_do;
-					       	console.log(JSON.stringify(array));/*make a clean array*/
-					       	$seeDo = JSON.stringify(array)
-					       	console.log($seeDo)
+					       	// console.log(JSON.stringify(array));/*make a clean array*/
+					       	// $seeDo = JSON.stringify(array)
+					       	// console.log($seeDo)
 
-					       	console.log(snapshot.val().to_do);/*can loop through this format and print?*/
-					       	console.log(snapshot.val().to_eat);
-					       	console.log(snapshot.val().to_sleep);
+					       	// console.log(snapshot.val().to_do);/*can loop through this format and print?*/
+					       	var toEat = snapshot.val().to_eat;
+					       	var toSleep = snapshot.val().to_sleep;
 
 					       		// Loop through to_do array
 					       		for (var i = 0; i < toDo.length; i++){
@@ -443,6 +443,24 @@ var newTrip = (function() {
 					       			
 					       		};
 					       		// NEED TO EMPTY THIS DIV
+
+						       		// Loop through to_eat array
+						       		for (var i = 0; i < toEat.length; i++){
+
+						       			var eatlist = "<tr><td>" + toEat[i] + "</tr></td>"
+						       			$("#eatList").append(eatlist);
+						       			
+						       		};
+						       		// NEED TO EMPTY THIS DIV
+
+								       		// Loop through to_eat array
+							       		for (var i = 0; i < toSleep.length; i++){
+
+							       			var sleeplist = "<tr><td>" + toSleep[i] + "</tr></td>"
+							       			$("#placesSleep").append(sleeplist);
+							       			
+							       		};
+							       		// NEED TO EMPTY THIS DIV
 
 					       		
 					       		
