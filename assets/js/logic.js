@@ -91,7 +91,7 @@ var newTrip = (function() {
 
 
 
-	// ===============Click listener to seeDo value to add to an array
+	// ===============Click listener to seeDo value to add to an array =================
 
 	$("#seeDoBtn").on("click", function(event){
 
@@ -107,7 +107,7 @@ var newTrip = (function() {
 
 	    $('#seeDo').val("");
 
-	});/* ================END of seeDoBtn button */
+	});/* ================END of seeDoBtn button ================ */
 
 
 	// ===============Click listener to eatDrink value to add to an array
@@ -151,11 +151,23 @@ var newTrip = (function() {
 
 	// ================== This SAVE MY LIST btn click sends data to the server ========
 	$("#donebtn").on("click", function(event){
-	    addTo();
-	    event.preventDefault();
-		hideAll();
-		$("#page3").show();
-		getData();
+	    
+		    event.preventDefault();
+
+		    if($seeDo.length === 0 && $eatDrink.length === 0 && $sleep.length === 0){
+
+		    	/*&& $eatDrink.length && $sleep.length */
+		    	alert("You need to add at least one item to save your list");
+
+		    }else{
+
+				    hideAll();
+					$("#page3").show();
+
+				    addTo();
+				    getData();
+
+				};
 
 	});/* ================ END of SAVE MY LIST on click =============== */
 
