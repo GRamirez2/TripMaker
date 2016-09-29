@@ -310,7 +310,7 @@ var newTrip = (function() {
   function empty() {
     $place = "";
     $type = "";
-    $key = 0; /*Not sure I can get this number in here*/
+    $key = 0; /*Have to do a push, then a quick update to get in here*/
     $seeDo = [];
     $eatDrink = [];
     $sleep = [];
@@ -396,29 +396,65 @@ var newTrip = (function() {
 
 
 				database.ref("trips/" + key).on("value", function(snapshot) {
+
+					  	// The global arrays are empty except for the lat/lng default
+							      		// console.log($place);
+									    // console.log($type);
+									    // console.log($key);
+									    // console.log($seeDo);
+									    // console.log($eatDrink);
+									    // console.log($sleep);
+									    // console.log($notes);
+									    // console.log($lat);
+									    // console.log($lng);
+									    // console.log($placeID);
 					   		       
 							console.log(snapshot.val()); /*a reference of everything*/
 
-							console.log(snapshot.val().key);
-							console.log(snapshot.val().lat);
-							console.log(snapshot.val().lng);
-							console.log(snapshot.val().place);
-							console.log(snapshot.val().type);
+							$key = snapshot.val().key
+							console.log($key);
 
-					       	var array = snapshot.val().to_do;
+							$lat = snapshot.val().lat
+							console.log($lat);
+
+							$lng = snapshot.val().lng
+							console.log($lng);
+
+							$place = snapshot.val().place
+							console.log($place);
+
+							$type = snapshot.val().type
+							console.log($type);
+
+					       	var toDo = snapshot.val().to_do;
 					       	console.log(JSON.stringify(array));/*make a clean array*/
+					       	$seeDo = JSON.stringify(array)
+					       	console.log($seeDo)
 
 					       	console.log(snapshot.val().to_do);/*can loop through this format and print?*/
 					       	console.log(snapshot.val().to_eat);
 					       	console.log(snapshot.val().to_sleep);
 
+					       		// Loop through to_do array
+					       		for (var i = 0; i < toDo.length; i++){
 
-					       	
+					       			var dolist = "<tr><td>" + toDo[i] + "</tr></td>"
+					       			$("#doSee").append(dolist);
+					       			
+					       		};
+					       		// NEED TO EMPTY THIS DIV
+
+					       		
+					       		
+					       		// $("#eatList")
+					       		// $("#placesSleep")
 					   		
 					        
-					 	});
+				});/* END of on.value snapshot*/
 					
-		};/*end of showData*/
+	};/*end of showData*/
+
+	console.log($lat);/*==== I need to get the lat/lng out of here to print the map again=========*/
 
    	//=============== END of showData function, PAGE 4===================
 
@@ -427,21 +463,14 @@ var newTrip = (function() {
 		trips.on("value", function(snapshot) {
 
 			// var seeS = snapshot.val().key.see; 
-
-			// Print the initial data to the console.
 			// console.log(snapshot.val()[key].city);
-			console.log(snapshot.val());
-			console.log(snapshot.exportVal());
+			console.log(snapshot.val());/*TESTING*/
+			console.log(snapshot.exportVal()); /*TESTING*/
 			// console.log(JSON.stringify(seeS));
-			// console.log(snapshot.val().austin.sleep);
-			// console.log(snapshot.val().austin.sleep.length);
-			// console.log(snapshot.val().austin.city);
-			// console.log(snapshot.val().houston.city);
+			
 		});
 
-// trips.limitToLast(1).on("value", function(snapshot) {
-// 	console.log(snapshot.name());
-// });
+
 
 
 
