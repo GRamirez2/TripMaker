@@ -522,27 +522,30 @@ var newTrip = (function() {
 		});
 
 // ===================Shannon's Weather API call====================================================
-		// function weather(){
+function weather(){	
 
-		// 		// $('#addLocation').on('click', function(){
+                // $('#addLocation').on('click', function(){
 
-		// 		// Here we grab the text from the input box 
-		// 		// var city = $('#location-input').val().trim();
+                // Here we grab the text from the input box 
+                // var city = $('#location-input').val().trim();
 
-		// 		// Here we assemble our URL 
-		// 		// var queryURL = "http://api.openweathermap.org/data/2.5/weather?lat="+30.267153+"&lon="+-97.7430608+"&APPID=29ce5f4e343c631c7edc5ddd5dbeec3f";
-		// 		var queryUrL = "https://api.darksky.net/forecast/7b2f86a4b966bb72650a5261661e6edb/30.267153,-97.7430608"
+                // Here we assemble our URL 
+                // var queryURL = "http://api.openweathermap.org/data/2.5/weather?lat="+30.267153+"&lon="+-97.7430608+"&APPID=29ce5f4e343c631c7edc5ddd5dbeec3f";
 
+var queryURL = "https://api.darksky.net/forecast/7b2f86a4b966bb72650a5261661e6edb/30.2671,-97.7430"
 
-		// 		$.ajax({url: queryURL, method: 'GET'}).done(function(weatherinfo) {
+                $.ajax({url: queryURL, method: 'GET'}).done(function(response) {
 
-		// 			// Retrieves the Location Weather Data
-		// 			// var currentWeather = response.currently.temperature;
+                    // Retrieves the Location Weather Data
+                    var currentWeather = response.currently.temperature;
 
-		// 			// $('#weekEndList').append(currentWeather);
+                    $('#weekEndList').append(currentWeather);
 
-		// 			console.log(weatherinfo);
-		// 			})
+                    console.log(response.currently.temperature);
+                    })
+               }
+
+               weather();
 				
 						
 		// };/*End of on click funtion*/ 
