@@ -77,6 +77,7 @@ var newTrip = (function() {
 
 				    start_trip();
 				    hideAll();
+				    weather();
 
 					$("#page2").show();
 
@@ -493,12 +494,11 @@ var newTrip = (function() {
 							       					};
 							       			}; /*End of else if for toSleep.lenth */
 							       			
-							       		// NEED TO EMPTY THIS DIV
+							       		
 
 					       		
 					       		
-					       		// $("#eatList")
-					       		// $("#placesSleep")
+					       		
 					   		
 					        
 				});/* END of on.value snapshot*/
@@ -521,7 +521,32 @@ var newTrip = (function() {
 			
 		});
 
+// ===================Shannon's Weather API call====================================================
+		// function weather(){
 
+		// 		// $('#addLocation').on('click', function(){
+
+		// 		// Here we grab the text from the input box 
+		// 		// var city = $('#location-input').val().trim();
+
+		// 		// Here we assemble our URL 
+		// 		// var queryURL = "http://api.openweathermap.org/data/2.5/weather?lat="+30.267153+"&lon="+-97.7430608+"&APPID=29ce5f4e343c631c7edc5ddd5dbeec3f";
+		// 		var queryUrL = "https://api.darksky.net/forecast/7b2f86a4b966bb72650a5261661e6edb/30.267153,-97.7430608"
+
+
+		// 		$.ajax({url: queryURL, method: 'GET'}).done(function(weatherinfo) {
+
+		// 			// Retrieves the Location Weather Data
+		// 			// var currentWeather = response.currently.temperature;
+
+		// 			// $('#weekEndList').append(currentWeather);
+
+		// 			console.log(weatherinfo);
+		// 			})
+				
+						
+		// };/*End of on click funtion*/ 
+// ====END ============Shannon's Weather API call====================================================	
 
 
 
