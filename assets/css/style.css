@@ -93,6 +93,28 @@ html,body {
 
 }
 
+#tealText{
+
+	color: #4db6ac;
+	text-align: center;
+	font-size: 2em;
+};
+
+#doSee,
+#eatlist,
+#placesSleep{
+
+	color: #ffffff ;
+	border: 0px;
+
+}
+
+.collapsible-body{
+	color: white;
+	border-bottom: 0px;
+	padding-left: 15px;
+}
+
 @media screen and (max-width: 992px){
 
 	#newMap2{
