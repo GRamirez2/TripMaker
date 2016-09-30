@@ -197,42 +197,39 @@ var newTrip = (function() {
 
 
   function start_trip() {
-    $("#details").html("<h5>My <strong>"+$type+"</strong> plans to <strong>"+$place+"</strong> will include</h5>");
+	    $("#details").html("<h5>My <strong>"+$type+"</strong> plans to <strong>"+$place+"</strong> will include</h5>");
 
-    var googleKey = 'AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E';
-    // Google API to get lat/lng or place_id
-    queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address="+$place+"&key="+googleKey;
+	    var googleKey = 'AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E';
+	    // Google API to get lat/lng or place_id
+	    queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address="+$place+"&key="+googleKey;
 
-    $.ajax({
-      url: queryURL,
-      method: 'GET'
-      
-      }).done(function(json) {
-          // Do we need to grab to lat long and put them in the data base?
-          console.log(json);
-          // console.log(json.results[0].place_id);
-          $placeID = json.results[0].place_id;
-          console.log($placeID);
-          // console.log(json.results[0].geometry.location.lat);
-          $lat = json.results[0].geometry.location.lat;
-          console.log($lat);
-          // console.log(json.results[0].geometry.location.lng);
-          $lng = json.results[0].geometry.location.lng;
-          console.log($lng);
+	    $.ajax({
+	      url: queryURL,
+	      method: 'GET'
+	      
+	      }).done(function(json) {
+	          // Do we need to grab to lat long and put them in the data base?
+	          console.log(json);
+	          // console.log(json.results[0].place_id);
+	          $placeID = json.results[0].place_id;
+	          console.log($placeID);
+	          // console.log(json.results[0].geometry.location.lat);
+	          $lat = json.results[0].geometry.location.lat;
+	          console.log($lat);
+	          // console.log(json.results[0].geometry.location.lng);
+	          $lng = json.results[0].geometry.location.lng;
+	          console.log($lng);
 
-          printMap();
+	          printMap();
 
-          push_trip();
+	          push_trip();
 
-          console.log($lat)
-          console.log($lng)
+	          console.log($lat)
+	          console.log($lng)
 
 
-          }); /*End of googl ajax call*/
-
-          
-          
-  }/*End of start_trip function*/
+	          }); /*End of googl ajax call*/
+  	}/*End of start_trip function*/
 
 
   function printMap() {
@@ -242,45 +239,44 @@ var newTrip = (function() {
         });
       }
 
-
   function push_trip() {
-    //This is creating one "parent" in the data base named "trips"
-    var trips = database.ref("trips")
-    $key = trips.push({
+	    //This is creating one "parent" in the data base named "trips"
+	    var trips = database.ref("trips")
+	    $key = trips.push({
 
-        place: $place,
-        type: $type,
-        to_do: $seeDo,
-        to_eat: $eatDrink,
-        to_sleep: $sleep,
-        notes: $notes,
-        lat: $lat,
-        lng: $lng,
-        place_ID: $placeID
-        }).key;
+	        place: $place,
+	        type: $type,
+	        to_do: $seeDo,
+	        to_eat: $eatDrink,
+	        to_sleep: $sleep,
+	        notes: $notes,
+	        lat: $lat,
+	        lng: $lng,
+	        place_ID: $placeID
+	        }).key;
 
-    // empty the local keys after the UPDATE to the database NOT on the PUSH
-    // empty();
-   
-    
-    var newData = {};
-	newData['/trips/'+$key]= {
-								
-								key: $key,
-								place: $place,
-						        type: $type,
-						        to_do: $seeDo,
-						        to_eat: $eatDrink,
-						        to_sleep: $sleep,
-						        notes: $notes,
-						        lat: $lat,
-						        lng: $lng,
-						        place_ID: $placeID
-							};
+	    // empty the local keys after the UPDATE to the database NOT on the PUSH
+	    // empty();
+	   
+	    
+	    var newData = {};
+		newData['/trips/'+$key]= {
+									
+									key: $key,
+									place: $place,
+							        type: $type,
+							        to_do: $seeDo,
+							        to_eat: $eatDrink,
+							        to_sleep: $sleep,
+							        notes: $notes,
+							        lat: $lat,
+							        lng: $lng,
+							        place_ID: $placeID
+								};
 
-	database.ref().update(newData);
+		database.ref().update(newData);
 
-  };
+  	};/*============== End of push_trip*/
 
 
 	function addTo(){
@@ -309,25 +305,26 @@ var newTrip = (function() {
 
   
   function empty() {
-    $place = "";
-    $type = "";
-    $key = 0; /*Have to do a push, then a quick update to get in here*/
-    $seeDo = [];
-    $eatDrink = [];
-    $sleep = [];
-    $notes = "";
-    $lat = 0;
-    $lng = 0;
-    $place_ID = 0;
 
-  };/*End of empty function*/
+	    $place = "";
+	    $type = "";
+	    $key = 0; /*Have to do a push, then a quick update to get in here*/
+	    $seeDo = [];
+	    $eatDrink = [];
+	    $sleep = [];
+	    $notes = "";
+	    $lat = 0;
+	    $lng = 0;
+	    $place_ID = 0;
+
+  	};/*End of empty function*/
 
 	var destination = [];
 	var idKey = [];
 	var type = [];
 
 	/*========= BEGINING of getData function ============*/
-	function getData() {
+  function getData() {
 
 		destination = [];
 		idKey = [];
@@ -353,7 +350,7 @@ var newTrip = (function() {
 
 
 	/*=========== BEGINING of createButtons funtions ==============*/
-	function createButtons(){
+  function createButtons(){
 
 		$('#dayList').empty();
 		$('#weekEndList').empty();
@@ -386,7 +383,7 @@ var newTrip = (function() {
 	}/*========== end of createButton function ===============*/
 
 	//=============== Begining of showData function, PAGE 4===================
-	function showData (){	
+  function showData (){	
 
 		hideAll();	
 		$("#page4").show();
@@ -493,24 +490,14 @@ var newTrip = (function() {
 							       			
 							       					};
 							       			}; /*End of else if for toSleep.lenth */
-							       			
-							       		
-
-					       		
-					       		
-					       		
-					   		
-					        
+							       			  
 				});/* END of on.value snapshot*/
+
+		weather();
 					
-	};/*end of showData*/
-
-	console.log($lat);/*==== I need to get the lat/lng out of here to print the map again=========*/
-
-   	//=============== END of showData function, PAGE 4===================
-
-		
-	// ===========Get data from the firebase =================
+	};//=============== END of showData function, PAGE 4===================
+	
+// ===========Get data from the firebase =================
 		trips.on("value", function(snapshot) {
 
 			// var seeS = snapshot.val().key.see; 
@@ -522,30 +509,22 @@ var newTrip = (function() {
 		});
 
 // ===================Shannon's Weather API call====================================================
-function weather(){	
+  function weather(){	
 
-                // $('#addLocation').on('click', function(){
-
-                // Here we grab the text from the input box 
-                // var city = $('#location-input').val().trim();
-
-                // Here we assemble our URL 
-                // var queryURL = "http://api.openweathermap.org/data/2.5/weather?lat="+30.267153+"&lon="+-97.7430608+"&APPID=29ce5f4e343c631c7edc5ddd5dbeec3f";
-
-var queryURL = "https://api.darksky.net/forecast/7b2f86a4b966bb72650a5261661e6edb/30.2671,-97.7430"
+		var queryURL = "https://api.darksky.net/forecast/7b2f86a4b966bb72650a5261661e6edb/30.2671,-97.7430"
 
                 $.ajax({url: queryURL, method: 'GET'}).done(function(response) {
 
                     // Retrieves the Location Weather Data
                     var currentWeather = response.currently.temperature;
 
-                    $('#weekEndList').append(currentWeather);
+                    $('#weather').append(currentWeather);
 
                     console.log(response.currently.temperature);
                     })
-               }
+    }/*End of weather function*/
 
-               weather();
+    
 				
 						
 		// };/*End of on click funtion*/ 
