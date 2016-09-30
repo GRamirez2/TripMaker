@@ -494,8 +494,17 @@ var newTrip = (function() {
 				});/* END of on.value snapshot*/
 
 		weather();
+		printMap2();
 					
 	};//=============== END of showData function, PAGE 4===================
+
+// ================ Second Print map function =============================
+  function printMap2() {
+	map = new google.maps.Map(document.getElementById('newMap2'), {
+      center: {lat: $lat, lng: $lng},
+      zoom: 12
+    });
+  }/*==========================  END of Scond Print map function ============*/
 	
 // ===========Get data from the firebase =================
 		trips.on("value", function(snapshot) {
