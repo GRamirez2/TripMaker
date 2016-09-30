@@ -197,7 +197,9 @@ var newTrip = (function() {
 
 
   function start_trip() {
-	    $("#details").html("<h5>My <strong>"+$type+"</strong> plans to <strong>"+$place+"</strong> will include</h5>");
+  		var tripp = $type.toUpperCase()
+  		var placee = $place.toUpperCase()
+	    $("#details").html('<h4>Plans for my '+ tripp +' in '+ placee +' include:</h4>');
 
 	    var googleKey = 'AIzaSyAxNtwAwM8tjrDJJQQSHfJzgepd1YI54_E';
 	    // Google API to get lat/lng or place_id
@@ -361,7 +363,8 @@ var newTrip = (function() {
 
 			var button = $('<button>')
 			button.addClass('buttons');
-			button.text(destination[i]);
+			var PLACE = destination[i].toUpperCase();
+			button.text(PLACE);
 			button.attr({'id': idKey[i], 'data-destination': destination[i], 'data-type': type[i]});
 			// console.log(button.data('type'))
 			if (button.data('type') == 'day') {
