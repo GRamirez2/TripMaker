@@ -432,15 +432,19 @@ var newTrip = (function() {
 					       	// console.log(JSON.stringify(array));/*make a clean array*/
 					       	// $seeDo = JSON.stringify(array)
 					       	// console.log($seeDo)
-
 					       	// console.log(snapshot.val().to_do);/*can loop through this format and print?*/
 					       	var toEat = snapshot.val().to_eat;
 					       	var toSleep = snapshot.val().to_sleep;
 
+					       	var trip = $type.toUpperCase();
+					       	var place = $place.toUpperCase();
+					       	var details = '<h4>Plans for my '+ trip +' in '+ place +' include:</h4>';
+					       	$("#details2").html(details);
+
 					       		// Loop through to_do array
 					       		if(typeof toDo === 'undefined' || toDo === null ){
 
-					       			var emptylist = '<h5>' + 'This list is empty' + '</h5>'
+					       			var emptylist = '<h5>' + '* * THIS LIST IS EMPTY * *' + '</h5>'
 					       			$("#doSee").append(emptylist);
 					       			
 
@@ -448,7 +452,7 @@ var newTrip = (function() {
 
 							       			for (var i = 0; i < toDo.length; i++){
 
-							       			var dolist = "<tr><td>" + toDo[i] + "</tr></td>"
+							       			var dolist = "<tr><td>- " + toDo[i] + "</tr></td>"
 							       			$("#doSee").append(dolist);
 							       			
 							       			};
@@ -459,7 +463,7 @@ var newTrip = (function() {
 						       		// Loop through to_eat array
 						       		if(typeof toEat === 'undefined' || toEat === null ){
 
-						       			var emptylist = '<h5>' + 'This list is empty' + '</h5>'
+						       			var emptylist = '<h5>' + '* * THIS LIST IS EMPTY * *' + '</h5>'
 						       			$("#eatList").append(emptylist);
 					       			
 
@@ -467,7 +471,7 @@ var newTrip = (function() {
 
 							       					for (var i = 0; i < toEat.length; i++){
 
-									       			var eatlist = "<tr><td>" + toEat[i] + "</tr></td>"
+									       			var eatlist = "<tr><td>- " + toEat[i] + "</tr></td>"
 									       			$("#eatList").append(eatlist);
 						       			
 						       						};
@@ -477,7 +481,7 @@ var newTrip = (function() {
 								    	// Loop through to_eat array
 								    	if(typeof toSleep === 'undefined' || toSleep === null ){
 
-							       			var emptylist = '<h5>' + 'This list is empty' + '</h5>'
+							       			var emptylist = '<h5>' + '* * THIS LIST IS EMPTY * *' + '</h5>'
 							       			$("#placesSleep").append(emptylist);
 					       			
 
@@ -485,7 +489,7 @@ var newTrip = (function() {
 
 										       		for (var i = 0; i < toSleep.length; i++){
 
-										       			var sleeplist = "<tr><td>" + toSleep[i] + "</tr></td>"
+										       			var sleeplist = "<tr><td>- " + toSleep[i] + "</tr></td>"
 										       			$("#placesSleep").append(sleeplist);
 							       			
 							       					};
