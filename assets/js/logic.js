@@ -278,6 +278,10 @@ var newTrip = (function() {
 
 		database.ref().update(newData);
 
+		$seeDo = [];
+  		$eatDrink = [];
+  		$sleep = [];
+
   	};/*============== End of push_trip*/
 
 
