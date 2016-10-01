@@ -278,9 +278,7 @@ var newTrip = (function() {
 
 		database.ref().update(newData);
 
-		$seeDo = [];
-  		$eatDrink = [];
-  		$sleep = [];
+		
 
   	};/*============== End of push_trip*/
 
@@ -305,6 +303,10 @@ var newTrip = (function() {
 					});/*end of trips.update*/
 
 		});/*end of snapshot*/
+
+		$seeDo = [];
+  		$eatDrink = [];
+  		$sleep = [];
 
 	};/*END of addTO function*/
 
