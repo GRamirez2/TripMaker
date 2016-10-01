@@ -536,6 +536,7 @@ var newTrip = (function() {
 
                     $('#weather').append(currentWeather);
 
+                    console.log(currentWeather);
                     console.log(response.currently.temperature);
                     })
     }/*End of weather function*/
