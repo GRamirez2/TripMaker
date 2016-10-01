@@ -150,6 +150,10 @@ html,body {
 	margin-top: 50px;
 }
 
+#cardFix1{
+  margin-top: 2em;
+  }
+
 @media screen and (max-width: 992px){
 
 	#newMap2{
