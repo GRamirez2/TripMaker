@@ -76,20 +76,17 @@ html,body {
 	
 }
 
-#doSee,
+/*#doSee,
 #eatlist,
 #placesSleep{
-	height: 250px;
+	height: 300px;
 	overflow: scroll;
-}
+}*/
 
-#eatList {
-	height: 250px;
-}
 
-#placesSleep {
+/*#placesSleep {
 	height: 250px;
-}
+}*/
 
 #page4Lists {
 	height: 1000px;
