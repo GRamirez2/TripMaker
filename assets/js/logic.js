@@ -513,10 +513,10 @@ var newTrip = (function() {
 
 // ================ Second Print map function =============================
   function printMap2() {
-	map = new google.maps.Map(document.getElementById('newMap2'), {
-      center: {lat: $lat, lng: $lng},
-      zoom: 12
-    });
+		map = new google.maps.Map(document.getElementById('newMap2'), {
+	      center: {lat: $lat, lng: $lng},
+	      zoom: 12
+	    });
   }/*==========================  END of Scond Print map function ============*/
 	
 // ===========Get data from the firebase =================
@@ -547,10 +547,6 @@ var newTrip = (function() {
                     })
     }/*End of weather function*/
 
-    
-				
-						
-		// };/*End of on click funtion*/ 
 // ====END ============Shannon's Weather API call====================================================	
 
 
