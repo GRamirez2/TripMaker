@@ -76,8 +76,11 @@ html,body {
 	
 }
 
-#doSee {
+#doSee,
+#eatlist,
+#placesSleep{
 	height: 250px;
+	overflow: scroll;
 }
 
 #eatList {
@@ -104,8 +107,10 @@ html,body {
 #eatlist,
 #placesSleep{
 
+
 	color: #ffffff ;
 	border: 0px;
+	overflow: scroll;
 
 }
 
